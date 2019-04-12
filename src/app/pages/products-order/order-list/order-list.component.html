@@ -27,7 +27,7 @@
 </mat-card>
 
 <mat-card fxLayout="column" fxLayoutAlign="center center" style="height: 300px;"
-    *ngIf="!(products?.length > 0) && !loading">
+    *ngIf="!(products?.length > 0) && !loadDetails">
     <h1>No hay productos en el carrito</h1>
     <mat-chip-list>
         <mat-chip color="warn" selected="true">No tiene articulos en el carrito.</mat-chip>
