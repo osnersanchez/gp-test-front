@@ -1,0 +1,442 @@
+<mat-card>
+  <app-mask-loading [loading]="loading"></app-mask-loading>
+  <mat-horizontal-stepper *ngIf="horizontalStepper" [linear]="isLinear" #stepper>
+
+    <!-- Primer Step Informacion del Producto -->
+    <mat-step [stepControl]="productAttachedForm && productInformationForm && productTypeForm">
+      <ng-template matStepLabel>Información del Producto</ng-template>
+      <ng-container [ngTemplateOutlet]="productCategory"></ng-container>
+      <div style="display:flex; justify-content: flex-end;">
+        <button mat-button mat-raised-button matStepperNext>Siguiente</button>
+      </div>
+    </mat-step>
+
+    <!-- Segundo Step Registro de Publicacion -->
+    <mat-step [completed]="!segundoStepNext">
+      <ng-template matStepLabel>Formato</ng-template>
+      <ng-container [ngTemplateOutlet]="productFormat"></ng-container>
+
+      <div style="display:flex; justify-content: space-between;">
+        <button mat-button mat-raised-button matStepperPrevious>Anterior</button>
+        <button mat-button mat-raised-button (click)="saveProduct()" type="submit" [disabled]="formPublication.invalid" >Guardar</button>
+      </div>
+    </mat-step>
+
+
+  </mat-horizontal-stepper>
+
+
+  <mat-vertical-stepper *ngIf="!horizontalStepper" [linear]="isLinear">
+    <!-- Primer Step Informacion del Producto -->
+    <!-- Primer Step Informacion del Producto -->
+    <mat-step [stepControl]="productAttachedForm && productInformationForm && productTypeForm">
+      <ng-template matStepLabel>Información del Producto</ng-template>
+      <ng-container [ngTemplateOutlet]="productCategory"></ng-container>
+      <div style="display:flex; justify-content: flex-end;">
+        <button mat-button mat-raised-button matStepperNext>Siguiente</button>
+      </div>
+    </mat-step>
+
+    <!-- Segundo Step Registro de Publicacion -->
+    <mat-step [completed]="!segundoStepNext">
+      <ng-template matStepLabel>Formato</ng-template>
+      <!-- <mat-step [completed]="!segundoStepNext" [label]="publication_title"> 
+      <ng-template *ngIf="publication_title == 1" matStepLabel>Publicacion Libre</ng-template>
+      <ng-template *ngIf="publication_title == 2" matStepLabel>Compra Garantizada</ng-template>
+      <ng-template *ngIf="!publication_title" matStepLabel>Tipo de Publicación</ng-template>
+
+      <ng-container [ngTemplateOutlet]="PublicationsType"></ng-container> -->
+
+      <ng-container [ngTemplateOutlet]="productFormat"></ng-container>
+
+      <div style="display:flex; justify-content: space-between;">
+        <button mat-button mat-raised-button matStepperPrevious>Anterior</button>
+        <button mat-button mat-raised-button matStepperNext>Siguiente</button>
+      </div>
+    </mat-step>
+
+  </mat-vertical-stepper>
+
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #productInformation>
+  <div fxLayout="row wrap">
+    <form [formGroup]="productInformationForm" fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <!-- <h2 class="text-muted text-center">Detalles del Producto</h2> -->
+      <mat-form-field class="w-100 mt-2">
+        <input matInput placeholder="Titulo Publicación" formControlName="Title">
+      </mat-form-field>
+
+      <!-- <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Describe el Producto" formControlName="Description">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input *ngIf="isChecked" matInput placeholder="Cantidad" disabled value="1">
+        <input *ngIf="!isChecked" matInput type="number" placeholder="Cantidad" min="1" value="1" formControlName="Stock">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput type="number" min="0" value="1" placeholder="Tiempo de Entrega (Dias)" formControlName="DeliveryTime">
+      </mat-form-field> -->
+    </form>
+
+    <!-- <app-links fxFlex="100" fxFlex.gt-sm="50" [links]="links" (onLinks)="links=$event"></app-links>
+
+    <div fxFlex="100" fxFlex.gt-sm="50" class="p-2"></div>
+
+    <div *ngIf="links.length > 0" class="mat-table orders-table" style="width: 100%;">
+      <h2 class="text-muted text-center">Links Añadidos</h2>
+      <div *ngFor="let att of links; let idx = index" class="mat-row filter-row mat-elevation-z1 text-muted">
+        <div class="mat-cell">
+          <span class="order">{{att.title}}</span>
+        </div>
+        <div class="mat-cell">{{att.type}}</div>
+
+        <div class="p-1 actions">
+          <button mat-mini-fab color="primary" style="background-color: red;" matTooltip="eliminar" (click)="removeLinks(links, idx)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #productCategory>
+  <form [formGroup]="formPublication">
+    <div fxLayout="row wrap">
+      <div fxFlex="100" class="p-2">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start end" fxLayoutGap.gt-xs="20px">
+          <mat-form-field fxFlex="0" class="w-100 mt-2">
+            <input formControlName="name" matInput placeholder="Titulo Publicación" required>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="0" class="w-100 mt-2">
+            <input formControlName="price" type="number" matInput placeholder="Precio" required>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="0" class="w-100 mt-1" style="margin: 10px 0px;padding: 15px 0 0 0;">
+            <mat-select formControlName="idCategory" placeholder="Categoria" required>
+              <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex.gt-xs="15" class="w-100 mt-2">
+            <input formControlName="quantity" type="number" matInput placeholder="Cantidad" required>
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field class="w-100 mt-1">
+          <textarea formControlName="description" placeholder="Descripcion" matInput required></textarea>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </form>
+
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #productFormat>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxLayoutAlign="center center" class="p-2">
+      <div [ngStyle.gt-xs]="{width: '40%'}" style="width: 100%;height: 300px">
+        <attached [file]="enviroment+'/images/'+formPublication.value.photo" (onFormData)="formPublication.patchValue({photo:$event})"></attached>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #productPhoto>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <h2 class="text-muted text-center">Fotos del Producto</h2>
+      <app-upload-image [max]="3" (onAddFormData)="saveImageList($event)" (onimageList)="PrincipalImage($event)"
+        (onAlert)="alertImage($event)"></app-upload-image>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #productPlans>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <h2 class="text-muted text-center">Seleccione un tipo de Plan</h2>
+      <app-plans-selection (planSelection)="savePlanType($event)"></app-plans-selection>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #PublicationsType>
+
+  <mat-form-field class="w-100 mt-1">
+    <mat-select placeholder="Tipo de Publicación" (selectionChange)="change_title($event)">
+      <!-- <mat-option *ngFor="let publication of publicationType" [value]="publication.PlanId"> -->
+      <mat-option *ngFor="let publication of publicationType" [value]="publication.value">
+        {{publication.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</ng-template>
+
+
+<ng-template #MethodPayment>
+  <!-- <form [formGroup]="paymentForm"> -->
+  <form>
+    <div style="text-align: center">
+      <!-- <h2 class="text-muted text-center">Comisión a pagar {{pagoExtra | currency:'MXN'}}</h2> -->
+      <h2 *ngIf="publication_title != 2" class="text-muted text-center">Comisión a pagar {{pagoExtra | currency:'MXN'}}
+      </h2>
+      <h2 *ngIf="publication_title == 2 && !productPlanForm.valid" class="text-muted text-center">Seleccione un Plan
+        para Calcular Comisión a Pagar</h2>
+      <h2 *ngIf="publication_title == 2 && productPlanForm.valid" class="text-muted text-center">Comisión a pagar
+        {{pagoExtra | currency:'MXN'}}</h2>
+
+      <mat-form-field *ngIf="publication_title != 2" style="width: 50%; margin-top: 25px;">
+        <mat-select placeholder="Metodo de pago" (selectionChange)="onChangePayment($event.source.value)">
+          <mat-option *ngFor="let item of paymentMethods" [value]="item.value">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="publication_title == 2" style="width: 50%; margin-top: 25px;">
+        <mat-select placeholder="Metodo de pago" [disabled]="!productPlanForm.valid"
+          (selectionChange)="onChangePayment($event.source.value)">
+          <mat-option *ngFor="let item of paymentMethods" [value]="item.value">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #datosContacto>
+  <div fxLayout="row wrap">
+    <form fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <h2 class="text-muted text-center">Datos de Contacto</h2>
+      <mat-form-field class="w-100 mt-2">
+        <input matInput placeholder="Nombre">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input type="email" matInput placeholder="Correo Electronico">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Telefono / Telefono 2">
+      </mat-form-field>
+      <h2 class="text-muted text-center">Direccion del Bien</h2>
+      <mat-form-field class="w-100 mt-1">
+        <mat-select placeholder="Ciudad">
+          <mat-option *ngFor="let ciudad of ciudades" [value]="ciudad.value">
+            {{ciudad.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Calle">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input type="number" matInput placeholder="NumeroExterior">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input type="number" matInput placeholder="NumeroInterior">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="CP">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <mat-select placeholder="Municipio / Alcaldias">
+          <mat-option *ngFor="let municipio of municipios" [value]="municipio.value">
+            {{municipio.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #selectPrecio>
+  <div fxLayout="row wrap">
+    <form [formGroup]="selectPrecioForm" fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <h2 class="text-muted text-center">Ingresa el Precio Unitario por Pieza, Lote u Otra Unidad de Medida</h2>
+      <!-- <input style="width: 100%; height: 50px; font-size: 1.5em; text-align: center;" type="text" placeholder="" value="308.19" > -->
+      <mat-form-field class="w-100 mt-1">
+        <input type="number" matInput formControlName="Precio">
+      </mat-form-field>
+      <h2 class="text-muted text-center">Precio Publico</h2>
+      <h2 class="text-muted text-center">8 % / 60 dias</h2>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #vistaPrevia>
+  <div fxLayout="column" style="display: flex; justify-content: center; align-items: center;">
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <h2 class="text-muted text-center">Vista Previa</h2>
+      <div
+        style="max-width: 246px; text-align: center; border: 1px black solid; display: flex; justify-content: center; align-items: center">
+        <img *ngIf="!imagePrincipal" src="http://static.notinerd.com/wp-content/uploads/2014/04/715.jpg" alt="Foto"
+          style="width: 100%; height:100%">
+        <img *ngIf="imagePrincipal" [src]="imagePrincipal" alt="Foto" style="width: 100%; height:100%">
+      </div>
+      <h2 class="text-muted text-center">Titulo de la Publicacion</h2>
+      <h5 class="text-muted text-center">Descripcion de la Publicacion</h5>
+      <!-- <h1 class="text-muted text-center">$ {{ selectPrecioForm.value.Precio + ( selectPrecioForm.value.Precio * impuesto ) }}</h1> -->
+      <h1 class="text-muted text-center">$
+        {{ selectPrecioForm.value.Precio  + ( selectPrecioForm.value.Precio * impuesto ) }}</h1>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+<ng-template #shipping>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+
+      <h2 class="text-muted text-center">Datos para el Envio</h2>
+
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Titulo">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Descripción">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput type="number" min="0" value="1" placeholder="Peso">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Valumen">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Dimensiones">
+      </mat-form-field>
+      <mat-form-field class="w-100 mt-1">
+        <input matInput placeholder="Origen">
+      </mat-form-field>
+
+      <h2 *ngIf="publicationApply">Felicidades! tu Publicación aplica para envio</h2>
+      <h2 *ngIf="!publicationApply">Lo Sentimos, pero tu Publicación no aplica para envio</h2>
+
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #pricePiece>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+
+      <h2 class="text-muted text-center">Precio por Pieza</h2>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="49" fxFlex.xs="100" class="w-100 mt-1">
+          <input matInput placeholder="Precio por Pieza">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="49" fxFlex.xs="100" class="w-100 mt-1">
+          <input matInput placeholder="Precio por Pieza a partir de">
+        </mat-form-field>
+      </div>
+
+
+      <h2 class="text-muted text-center">Precio Mayoreo</h2>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="49" fxFlex.xs="100" class="w-100 mt-1">
+          <input matInput placeholder="Precio Mayoreo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="49" fxFlex.xs="100" class="w-100 mt-1">
+          <input matInput placeholder="Precio Mayoreo a partir de">
+        </mat-form-field>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #monthsInterest>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+      <app-plans-selection (planSelection)="planSelectionPremium($event)"></app-plans-selection>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #resultInterest>
+
+  <h2 *ngIf="PremiumPlan > 0" class="text-muted text-center">Plan de {{PremiumPlan}} Meses</h2>
+  <h2 *ngIf="PremiumPlan <= 0 || !PremiumPlan" class="text-muted text-center">Sin Selección de Meses</h2>
+
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center" class="p-2">
+
+    <div fxFlex="50" fxFlex.xs="100" class="w-100 mt-1 text-center">
+      <h2>Compra al Detal</h2>
+      <h1>{{PremiumPlan}} x 162.50</h1>
+      <h2>$1,640.98</h2>
+    </div>
+
+    <div fxFlex="50" fxFlex.xs="100" class="w-100 mt-1 text-center">
+      <h2>Compra al Mayoreo</h2>
+      <h1>{{PremiumPlan}} x 162.50</h1>
+      <h2>$1,240.98</h2>
+    </div>
+
+  </div>
+</ng-template>

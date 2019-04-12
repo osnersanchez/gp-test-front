@@ -1,0 +1,26 @@
+<body class="login-body">
+    <div fxLayoutAlign="center center">
+        <div >
+            <div *ngIf="isTokenValid === 'Valid'" >
+                <img src="https://goodpanda.com/assets/img/logo.svg" alt="GP" class="logo" />
+                <h1>Confirmado</h1>
+                <p>
+                  Exito, Correo Confirmado Exitosamente !!!
+                </p>
+            </div>
+
+            <div *ngIf="isTokenValid === 'Expired'" >
+                <img src="https://goodpanda.com/assets/img/logo.svg" alt="GP" class="logo" />
+                <h1>Error Correo Expirado!</h1>
+                <p>
+                   Se ha Reenviado otro Correo, Por Favor Intente Nuevamente.
+                </p>
+            </div>
+
+
+
+            
+        </div>
+    </div>
+</body>
+

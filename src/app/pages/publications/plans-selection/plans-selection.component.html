@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <div *ngFor="let plan of plansType; let idx = index" class="package card card-1" [class.brilliant]="selected == idx" (click)="selectedPlans(idx, plan)">
+    <div class="name">{{plan.name}}</div> 
+    <!-- <div class="price">{{plan.PlanComission}}% del Costo</div>
+    <div class="trial">{{plan.PlanDays}} Dias</div> -->
+    <hr />
+    <ul class="cd-pricing-features">
+      <li class="center">
+          {{plan.name}}
+        <!-- <strong><mat-icon class="md-48">person_pin</mat-icon></strong>
+        <strong><mat-icon class="md-48">person_pin</mat-icon></strong>
+        <strong><mat-icon class="md-48">person_pin</mat-icon></strong>
+        <strong><mat-icon class="md-48">person_pin</mat-icon></strong>
+        <strong><mat-icon class="md-48">person_pin</mat-icon></strong> -->
+      </li>  
+      <!-- <li class="center">
+        <strong>Sin anuncios</strong>        
+      </li> -->
+    </ul>
+  </div>
+</div>

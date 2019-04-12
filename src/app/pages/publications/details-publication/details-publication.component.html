@@ -1,0 +1,101 @@
+<div *ngIf="!loadDetails" fxLayout="row wrap">
+  <app-mask-loading [loading]="loading"></app-mask-loading>
+  <div fxFlex="100" fxFlex.gt-md="35" fxFlex.md="45">
+
+    <mat-card class="product-image">
+      <button mat-icon-button (click)="openZoomViewer()" fxHide="false" fxHide.gt-md>
+        <mat-icon>fullscreen</mat-icon>
+      </button>
+      <img *ngIf="publicationDetails?.photo" [src]="enviroment+'/images/'+publicationDetails?.photo"
+        (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)" />
+    </mat-card>
+
+  </div>
+  <div fxFlex="100" fxFlex.gt-md="45" fxFlex.md="55" ngClass.gt-sm="px-3 m-0" ngClass.sm="mt-2" ngClass.xs="mt-2">
+
+    <div #zoomViewer fxShow="false" fxShow.gt-md>
+      <mat-card *ngIf="zoomImage" class="zoom-viewer mat-elevation-z18"
+        [ngStyle]="{'background-image': 'url(' + zoomImage + ')'}"></mat-card>
+    </div>
+
+    <section class="py-1 lh">
+      <h2 class="separation">{{publicationDetails?.name}}</h2>
+      <mat-divider></mat-divider>
+    </section>
+    <section>
+      <div class="separation">
+        <h2>Descripción</h2>
+        <span>{{publicationDetails?.description}}</span>
+      </div>
+      <div class="separation" fxLayoutAlign="start center" fxLayoutGap="24px">
+        <mat-icon>credit_card</mat-icon><span fxFlex="grow">Metodo de pago</span>
+      </div>
+      <div class="separation" fxLayoutAlign="start center" fxLayoutGap="24px">
+        <mat-icon>pin_drop</mat-icon><span fxFlex="grow">Informacion de envio</span>
+      </div>
+    </section>
+
+  </div>
+  <section [ngStyle.gt-sm]="{padding:'20px 25px'}" style="width: 100%">
+
+    <!-- cantidad -->
+    <section class="separation">
+      <span style="color:#8e8e93; font-weight: 500;">Cantidad Disponible: <span
+          style="color:black">{{publicationDetails?.quantity}}</span></span><br><br>
+      <mat-form-field *ngIf="tokenService.getUserId() != publicationDetails?.idUser">
+        <input id="quantity" type="number" min="1" [max]="publicationDetails?.quantity" placeholder="Cantidad a Comprar"
+          (input)="quantityAmount()" [value]="quantity" [(ngModel)]="quantity" matInput>
+      </mat-form-field>
+
+    </section>
+
+    <!-- boton de compra o subasta -->
+    <section class="separation">
+
+      <button *ngIf="tokenService.getUserId() != publicationDetails?.idUser" [ngStyle.xs]="{'width':'100%'}"
+        mat-raised-button color="primary" (click)="addToShoppingCart()">
+        Añadir al carrito </button>
+      <button *ngIf="tokenService.getUserId() == publicationDetails?.idUser" [ngStyle.xs]="{'width':'100%'}"
+        mat-raised-button color="primary" [routerLink]="['/publications/edit/'+publicationDetails?.id]">
+        Editar </button>
+
+
+      <!-- favoritos -->
+      <div class="separation" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="35px">
+        <span fxFlex="grow">Items vendidos: {{mockPublication?.quantitySold}}</span>
+
+        <mat-icon (click)="mockPublication.like = !mockPublication.like" *ngIf="mockPublication.like" [ngStyle.gt-sm]="{'font-size': '2.5em'}" style="font-size: 1.2em; cursor: pointer;">
+          favorite</mat-icon>
+        <mat-icon (click)="mockPublication.like = !mockPublication.like" *ngIf="!mockPublication.like" [ngStyle.gt-sm]="{'font-size': '2.5em'}" style="font-size: 1.2em; cursor: pointer;">
+          favorite_border</mat-icon>
+
+        <mat-icon [ngStyle.gt-sm]="{'font-size': '2.5em'}" style="font-size: 1.2em">question_answer</mat-icon>
+      </div>
+    </section>
+
+    <section>
+      <div fxLayout.xs="column">
+        <div fxFlex="auto" class="separation" fxLayoutAlign="start center" fxLayoutGap="24px">
+          <mat-icon>navigation</mat-icon><span fxFlex="grow">Ubicacion</span>
+        </div>
+        <div fxFlex="auto" class="separation">
+          <h2>Garantía</h2>
+          <span>Directamente con el proveedor</span>
+        </div>
+      </div>
+
+      <div class="separation" fxLayoutAlign="start center" fxLayoutGap="24px">
+        <h2>Preguntas</h2><span class="questions">{{mockPublication?.questionsAsked}}</span>
+      </div>
+    </section>
+  </section>
+
+</div>
+
+<div *ngIf="!loadDetails" class="py-2 mt-2">
+  <h2>Publicaciones Relacionadas</h2>
+  <div class="divider"></div>
+  <app-products-related [products]="listPublications || []"></app-products-related>
+</div>
+
+<app-loading *ngIf="loadDetails"></app-loading>

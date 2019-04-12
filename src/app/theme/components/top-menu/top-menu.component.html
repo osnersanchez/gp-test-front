@@ -1,0 +1,92 @@
+<div class="top-menu">    
+
+    <!-- <a mat-button [matMenuTriggerFor]="currencyMenu" #currencyMenuTrigger="matMenuTrigger">
+        {{currency}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+    </a>
+    <mat-menu #currencyMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown">
+        <span (mouseleave)="currencyMenuTrigger.closeMenu()">
+            <button mat-menu-item *ngFor="let cur of currencies" (click)="changeCurrency(cur)">
+                <span>{{cur}}</span>
+            </button>
+        </span>
+    </mat-menu> -->
+
+    <!-- <a mat-button [matMenuTriggerFor]="langMenu" #langMenuTrigger="matMenuTrigger">
+        <img [src]="flag.image" width="18">
+        <span fxShow="false" fxShow.gt-sm class="flag-menu-title">{{flag.name}}</span>
+        <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+    </a>
+    <mat-menu #langMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown">
+        <span (mouseleave)="langMenuTrigger.closeMenu()">
+            <button mat-menu-item *ngFor="let flag of flags" (click)="changeLang(flag)">
+                <img [src]="flag.image" width="18"> {{flag.name}}
+            </button>
+        </span>
+    </mat-menu> -->
+
+    <span fxShow="false" fxShow.gt-sm>
+        <!-- <a mat-button routerLink="/compare">Compare  ({{appService.Data.compareList.length}})</a>
+        <a mat-button routerLink="/wishlist">Wishlist ({{appService.Data.wishList.length}})</a> -->
+    </span>  
+
+    <a mat-button [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger">
+        <mat-icon class="mat-icon-sm account-icon">person</mat-icon> <span fxShow="false" fxShow.gt-sm>cuenta</span> <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+    </a>
+    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
+        <span (mouseleave)="accountMenuTrigger.closeMenu()">
+            <div *ngIf="isLogged" fxLayout="row" fxLayoutAlign="space-around center" class="user-info">                   
+                <img src="assets/images/others/user.jpg" alt="user-image" width="50">
+                <p>{{userFullName}} <br> <small>{{email}}</small></p>
+            </div>
+            <div class="divider"></div>
+            <!-- <a mat-menu-item routerLink="/account"> 
+                <mat-icon class="mat-icon-sm">settings</mat-icon>
+                <span>Account Settings</span> 
+            </a>
+            <a mat-menu-item routerLink="/compare" fxHide="false" fxHide.gt-sm>
+                <mat-icon class="mat-icon-sm">compare</mat-icon>
+                <span>Compare ({{appService.Data.compareList.length}})</span> 
+            </a>
+            <a mat-menu-item routerLink="/wishlist" fxHide="false" fxHide.gt-sm>
+                <mat-icon class="mat-icon-sm">favorite</mat-icon>
+                <span>Wishlist ({{appService.Data.wishList.length}})</span>
+            </a>
+            <a mat-menu-item routerLink="/"> 
+                <mat-icon class="mat-icon-sm">lock</mat-icon>
+                <span>Lock screen</span> 
+            </a>
+            <a mat-menu-item routerLink="/"> 
+                <mat-icon class="mat-icon-sm">help</mat-icon>
+                <span>Help</span> 
+            </a> -->
+
+            <a *ngIf="isLogged" mat-menu-item routerLink="/account/information"> 
+                <mat-icon class="mat-icon-sm">compare</mat-icon>
+                <span>Mis Perfil</span> 
+            </a>
+
+            <div class="divider"></div>
+            
+            <a *ngIf="isLogged" mat-menu-item routerLink="/products-order"> 
+                <mat-icon class="mat-icon-sm">compare</mat-icon>
+                <span>Mis Pedidos</span> 
+            </a>
+            <a *ngIf="isLogged" mat-menu-item routerLink="/publications"> 
+                <mat-icon class="mat-icon-sm">compare</mat-icon>
+                <span>Mis Publicaciones</span> 
+            </a>
+            
+            <div class="divider"></div>
+
+            <a *ngIf="!isLogged"  mat-menu-item (click)="signIn()"> 
+                <mat-icon class="mat-icon-sm">send</mat-icon>
+                <span>Ingresar</span> 
+            </a>
+            <a *ngIf="isLogged"  mat-menu-item (click)="signOut()"> 
+                <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
+                <span>Cerrar sesi&oacute;n</span> 
+            </a>
+        </span>
+    </mat-menu>    
+
+</div>  

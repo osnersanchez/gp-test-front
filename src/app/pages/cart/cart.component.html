@@ -1,0 +1,70 @@
+<app-loading *ngIf="loadDetails"></app-loading>
+
+<mat-card *ngIf="products?.length > 0" class="p-0">
+
+  <div *ngIf="!loadDetails" class="mat-table cart-table">
+    <div class="mat-header-row">
+      <div fxFlex="20" class="mat-header-cell">Nombre</div>
+      <div fxFlex="20" class="mat-header-cell">Precio</div>
+      <div fxFlex="20" class="mat-header-cell">Cantidad</div>
+      <div fxFlex="20" class="mat-header-cell">Total</div>
+      <!-- <div class="mat-header-cell text-center">
+        <div class="px-1">
+          <button mat-raised-button color="warn" (click)="clear()">Clear All</button>
+        </div>
+      </div> -->
+    </div>
+    <div *ngFor="let product of products" class="mat-row">
+      <!-- <div class="mat-cell"><img [src]="product.Image"></div> -->
+      <div fxFlex="20" class="mat-cell"><a [routerLink]="['/publication/'+product.idProduct]"
+          class="product-name">{{product.name}}</a></div>
+      <div fxFlex="20" class="mat-cell">$ {{product.pricePerUnit | number : '1.2-2'}}</div>
+      <!-- <div class="mat-cell text-muted">
+        <app-controls [product]="product" [type]="'wish'" (onQuantityChange)="getTotalPrice($event)"></app-controls>
+      </div> -->
+      <div fxFlex="20" class="mat-cell">{{product.quantity}}</div>
+      <div fxFlex="20" class="mat-cell">$ {{product.amount | number : '1.2-2'}}</div>
+      <div class="mat-cell text-center">
+        <div class="p-1">
+          <button mat-mini-fab color="warn" (click)="remove(product)" matTooltip="Clear">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="mat-row">
+      <div class="mat-cell"><a [routerLink]="['/']" mat-raised-button color="primary">Continuar comprando</a></div>
+      <div class="mat-cell"></div>
+      <div class="mat-cell"></div>
+      <div class="mat-cell text-right">
+        <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
+          <!-- <span>SubTotal:</sppan> -->
+          <!-- <span class="text-muted">Discount:</span> -->
+          <span class="new-price">Total:</span>
+        </div>
+      </div>
+      <div class="mat-cell">
+        <div fxLayout="column" fxLayoutAlign="center start" class="grand-total">
+          <!-- <span>${{ grandTotal | number : '1.2-2'}}</span>
+          <span class="text-muted">15%</span> -->
+          <!-- <span class="new-price">${{ (grandTotal - (grandTotal*0.15)) | number : '1.2-2'}}</span> -->
+          <span class="new-price">$ {{ grandTotal | number : '1.2-2'}}</span>
+        </div>
+      </div>
+      <div class="mat-cell text-center"><a (click)="confirm()" mat-raised-button color="primary">Pagar</a></div>
+    </div>
+  </div>
+
+</mat-card>
+
+<mat-card fxLayout="column" fxLayoutAlign="center center" style="height: 300px;"
+  *ngIf="!(products?.length > 0) && !loading">
+  <h1>No hay productos en el carrito</h1>
+  <mat-chip-list>
+    <mat-chip color="warn" selected="true">No tiene articulos en el carrito.</mat-chip>
+  </mat-chip-list>
+  <div>
+    <a [routerLink]="['/']" mat-raised-button color="primary" class="mt-2">Continuar comprando</a>
+  </div>
+</mat-card>

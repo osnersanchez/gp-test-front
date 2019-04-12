@@ -1,0 +1,157 @@
+/*
+	RESET VALORES PREDETERMINADOS
+*/
+
+//	Elimina el efecto wave
+.app.blue .mat-toolbar.mat-primary {
+  background-color: #24364f;
+}
+
+//  Elimina el efecto hover de material
+.mat-button-focus-overlay {
+  background-color: transparent!important;
+}
+
+//  Elimina el efecto click de material
+.mat-ripple-element {
+  background-color: transparent!important;
+}
+
+.color-icon {
+	color: #ea544e;
+}
+/*
+	MAIN CONTAINER CLASS
+*/
+
+.app.blue .mat-toolbar.mat-primary {
+    background-color: #24364f;
+}
+
+//	---------------------------------------------------------------------
+//	MODIFICACIONES OPCIONES
+//	---------------------------------------------------------------------
+#cdk-overlay-0 {
+	// top: 49px!important;
+	border-bottom-left-radius: 2px!important;
+	border-bottom-right-radius: 2px!important;
+}
+
+//	---------------------------------------------------------------------
+//	HOME CATEGORY MENU
+//	---------------------------------------------------------------------
+
+.app.blue .mat-menu-panel.menu-category-1{
+	background: #333;
+}
+
+.arrow-black-top{
+	border: solid #333333;
+	border-width: 0 12px 12px 0;
+    display: inline-block;
+		padding: 3px;
+		transform: rotate(-135deg);
+		-webkit-transform: rotate(-135deg);
+		top: -7px;
+    left: 4.89em;
+    position: absolute;
+}
+
+.app.blue .mat-menu-item.item-category-1 {
+	color: white;
+	word-wrap: break-word !important;
+	white-space: pre-wrap !important;
+	height: initial!important;
+}
+
+.mat-menu-item-submenu-trigger.item-category-1::after{
+		border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+		padding: 3px;
+		transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		top: 45%;
+}
+
+.app.blue .mat-menu-item.item-category-1:hover {
+	background: rgb(107, 174, 226);
+}
+
+.app.blue .mat-menu-item.item-category-1:active{
+	background: rgb(107, 174, 226);
+}
+
+.mat-menu-panel.menu-category-2{
+	max-width: 100%;
+	width: 65em;
+	// margin-top: 7.8em;
+
+}
+
+a.hover-menu-item-2:hover {
+	color: rgb(107, 174, 226);
+	cursor: pointer;
+}
+
+.app.blue .mat-menu-item.hover-menu-item-header:hover{
+	color: rgb(107, 174, 226);
+}
+
+.app.blue .mat-menu-item.hover-menu-item-header{
+	font-weight: bold;
+	word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+
+
+div.matmenu-category-2{
+	margin: 3.5em;
+}
+
+h1.tittle-menu-2{
+	font-weight: 300;
+}
+
+// div.menu-category-2-area{
+// 	height: 13em;
+// 	overflow: auto;
+// }
+
+.margin-mobile-menu{
+	margin-left: 5%;
+	margin-right: 5%;
+
+}
+
+//	---------------------------------------------------------------------
+//	HOME SIDENAV MENU
+//	---------------------------------------------------------------------
+
+.app.blue .mat-drawer.sidenav-home {
+
+	margin-top: 3.5em;
+	width: 100%;
+	position: absolute;
+  }
+
+  mat-sidenav-container.sidenav-home-container {
+	.mat-drawer-backdrop.mat-drawer-shown{
+		opacity: 0;
+	}
+	
+  }
+
+
+  .arrow-white-top{
+	border: solid #fff;
+    border-width: 0 30px 30px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+	top: 3.5em;
+    right: 4.6em;
+    position: absolute;
+}

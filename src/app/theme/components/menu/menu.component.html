@@ -1,0 +1,40 @@
+<mat-toolbar class="top-navbar mat-elevation-z2" fxLayoutAlign="center center">
+    <a mat-button routerLink="/" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a mat-button [matMenuTriggerFor]="menu" (click)="openMegaMenu()">Categorias<mat-icon class="caret">arrow_drop_down</mat-icon></a>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" class="mega-menu app-dropdown">
+        <div fxLayout="row wrap">
+            <div *ngFor="let item of categories" fxFlex="20" fxLayout="column" class="p-1">
+                <a mat-menu-item (click)="goToCategory(item.Category.Id)"><b>{{item.Category.Name}}</b></a>
+                <mat-divider></mat-divider>
+                <div *ngFor="let child of item.Categories" >
+                    <a (click)="goToCategory(child.Category.Id)" mat-menu-item>{{child.Category.Name}}</a>
+                    <div *ngFor="let child2 of child.Categories" >
+                        <a (click)="goToCategory(child.Category.Id)" mat-menu-item>&bull; {{child2.Category.Name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </mat-menu>
+
+    <a *ngIf="isLoggedIn" mat-button [routerLink]="['/products-order']" routerLinkActive="horizontal-active-link"
+    [routerLinkActiveOptions]="{exact:true}">Mis Pedidos</a>
+    <a *ngIf="isLoggedIn" mat-button [routerLink]="['/publications' ]" routerLinkActive="horizontal-active-link"
+    [routerLinkActiveOptions]="{exact:true}">Publicaciones</a>
+    <a *ngIf="isLoggedIn" mat-button [routerLink]="['/publications/create']" routerLinkActive="horizontal-active-link"
+    [routerLinkActiveOptions]="{exact:true}">A&ntilde;adir una publicacion</a>
+    <a *ngIf="isLoggedIn" mat-button [matMenuTriggerFor]="myShop"routerLinkActive="horizontal-active-link"
+    [routerLink]="'/publications/category'" [routerLinkActiveOptions]="{exact:true}">Nueva Categoria<mat-icon class="caret">arrow_drop_down</mat-icon></a>
+
+    <a *ngIf="!isLoggedIn" mat-button [routerLink]="['/sign-in']" routerLinkActive="horizontal-active-link"
+    [routerLinkActiveOptions]="{exact:true}">Iniciar Sesi&Ograve;n    </a>
+    
+    <a *ngIf="!isLoggedIn" mat-button [routerLink]="['/sign-in']" routerLinkActive="horizontal-active-link"
+    [routerLinkActiveOptions]="{exact:true}">Registrar    </a>
+
+</mat-toolbar>
+
+<mat-menu #myShop="matMenu" class="app-dropdown">
+    <a mat-menu-item [routerLink]="['/my-shop']">Todas mis tiendas</a>
+    <a mat-menu-item [routerLink]="['/my-shop/shop-assistance']">Crear una tienda</a>
+</mat-menu>

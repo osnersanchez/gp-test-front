@@ -1,0 +1,67 @@
+<app-mask-loading [loading]="isReadyToSubmit"></app-mask-loading>    
+<div mat-dialog-title class="title_format"> 
+  <h2 class="title">Pago con {{data.paymentMethod}}</h2> 
+  <h3 *ngIf="paymentMethod == 'Openpay'" class="amount">Total: {{data.grandTotal | currency:'MXN'}}</h3>
+</div>
+<mat-dialog-content>    
+  <div class="card">                  
+      <!-- <app-mask-loading [loading]="isReadyToSubmit"></app-mask-loading> -->
+      <h3 *ngIf="paymentMethod == 'PayPal'" class="amount">Total: {{data.grandTotal | currency:'MXN'}}</h3>
+      <form [formGroup]="paymentForm"> 
+          <div *ngIf="paymentMethod === 'Openpay'" fxLayout="row wrap">
+            <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="p-1">
+              <span class="text-muted">Credit Card</span>
+              <img class="image_format" src="assets/images/others/card-icon.png" alt="">
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
+              <mat-form-field class="w-100">
+                <input matInput placeholder="Nombre del titular de la tarjeta" formControlName="cardHolderName" required>
+                <mat-error *ngIf="paymentForm.controls.cardHolderName.errors?.required">El nombre es requerido</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
+              <mat-form-field class="w-100">
+                <input matInput placeholder="Numero de tarjeta" maxlength="16" minlength="16" required formControlName="cardNumber">
+                <mat-error *ngIf="paymentForm.controls.cardNumber.errors?.required">El numero es requerido</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+              <mat-form-field class="w-100">
+                <mat-select placeholder="Mes de expiracion" formControlName="expiredMonth" required>
+                  <mat-option *ngFor="let month of months" [value]="month.value">
+                    {{month.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="paymentForm.controls.expiredMonth.errors?.required">El mes es requerido</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+              <mat-form-field class="w-100">
+                <mat-select placeholder="Año de expiracion" formControlName="expiredYear" required>
+                  <mat-option *ngFor="let year of years" [value]="year">
+                    {{year}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="paymentForm.controls.expiredYear.errors?.required">El año es requerido</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+              <mat-form-field class="w-100">
+                <input matInput maxlength="3" minlength="3" required placeholder="CVV" formControlName="cvv">
+                <mat-error *ngIf="paymentForm.controls.cvv.errors?.required">CVV es requerido</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </form>      
+  </div>
+  
+</mat-dialog-content> 
+<mat-dialog-actions style="text-align: center; width: 100%;">
+  <div style="text-align: center; width: 100%;">
+    <button *ngIf="paymentMethod === 'Openpay'" mat-raised-button color="primary" (click)="addCheckout()" [disabled]="!paymentForm.valid || isReadyToSubmit" style="width: 30%">Pagar</button>  
+    <div *ngIf="paymentMethod === 'PayPal'">
+        <div id="paypal-checkout-btn"></div>
+    </div>
+  </div>  
+  <!-- <button mat-raised-button (click)="closeDialog()">Ok</button> -->
+</mat-dialog-actions>

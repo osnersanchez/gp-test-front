@@ -1,0 +1,31 @@
+.card{
+    background: #f9f9f9;;
+    border-radius: 2px;    
+    height: 100%;
+    margin-bottom: 15px;
+    position: relative;    
+    padding: 10px;
+    border: 3px solid #e8e8e8;
+} 
+
+.title_format{
+    display: flex; 
+    justify-content: space-between;
+}
+
+@media (max-width: 768px){
+    .title{
+        font-size: larger;
+        text-align: center;
+    }
+    .amount{
+        font-size: large;
+        text-align: center;
+    }
+    .title_format{
+        display: unset;
+    }
+    .image_format{
+        width: 100%;
+    }
+}

@@ -1,0 +1,12 @@
+<section [ngSwitch]="data.type">
+
+  <h2 class="text-menssge">{{data.menssage}}</h2>
+
+  <div *ngSwitchCase="'confirm'" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="warn" (click)="onClick(false)">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="onClick(true)">Aceptar</button>
+  </div>
+  <div *ngSwitchCase="'warning'" fxLayoutAlign="center">
+    <button mat-raised-button color="primary" (click)="onClick(true)">Aceptar</button>
+  </div>
+</section>

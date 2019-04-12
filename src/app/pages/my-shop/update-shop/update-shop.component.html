@@ -1,0 +1,70 @@
+<div class="avatar-banner">
+  <div class="icono_absoluto overlayFade overlay">
+    <app-upload-image [max]="1" [simple]="true" (onAddAttached)="BackgroundImage='data:'+$event[0]?.MimeType +';base64,' + $event[0]?.Data; bannerList = $event; saveImageList($event,0)"></app-upload-image>
+  </div>
+  <div class="banner-image" [ngStyle]="{'background-image' : 'url(' +BackgroundImage + ')'}"></div>
+</div>
+
+<a class="link">
+  <div class="avatar ">
+    <div class="icono_absoluto overlayFade overlay">
+      <!-- <app-upload-image [max]="1" [simple]="true" (onAddAttached)="LogoImage='data:'+$event[0]?.MimeType +';base64,' + $event[0]?.Data; logoList = $event"
+        (onAddFormData)="mostra($event)"></app-upload-image> -->
+      <app-upload-image [max]="1" [simple]="true" (onAddAttached)="LogoImage='data:'+$event[0]?.MimeType +';base64,' + $event[0]?.Data; imgLogoAttached = $event; saveImageList($event,1)"
+        (onAddFormData)="mostra($event)"></app-upload-image>
+    </div>
+    <div class="brand-logo" [ngStyle]="{'background-image' : 'url(' +LogoImage + ')'}"></div>
+  </div>
+</a>
+
+<mat-card class="card-content text-center">
+  <h1>Modificar Tienda</h1>
+
+  <form style="padding: 30px" [formGroup]="formShop" (ngSubmit)="openConfirm()">
+    <app-mask-loading [loading]="loading"></app-mask-loading>
+    <div class="contenedor">
+      <div class="padre">
+        <div class="hijo">
+          <h2 class="text-muted text-center">Datos del Producto</h2>
+          <mat-form-field>
+            <input matInput placeholder="Nombre del Producto" formControlName="Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Slogan del Producto" formControlName="Slogan">
+          </mat-form-field>
+        </div>
+
+        <div class="hijo">
+          <h2 class="text-muted text-center">Fotos del Producto</h2>
+
+          <section style="justify-content: center" fxLayout="row wrap" fxLayoutGap="10px">
+            <div class="content-img" fxLayoutAlign="center center" *ngFor="let item of lista">
+              <img [src]="item.Url" style="max-width:100%;max-height:100%;">
+              <mat-icon class="close-icon" (click)="(lista.length > 1) ? deleteConfirm(item.MultimediaId) : warningDelete()">close</mat-icon>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="padre">
+        <app-upload-image max="3" [cant]="lista.length" [disabled]="lista.length>2" (onAlert)="disabledImage($event)"
+          style="width: 100%" [preview]="false" (onAddAttached)="saveImageList($event,2)"></app-upload-image>
+      </div>
+
+      <div class="padre">
+        <div class="en_linea">
+          <button [routerLink]="['/my-shop']" type="button" class="item" color="warn" mat-button>
+            <mat-icon aria-label="Back">arrow_back</mat-icon>
+            Atras
+          </button>
+          <button [disabled]="!lista.length" type="submit" class="item" mat-button>
+            Guardar
+            <mat-icon aria-label="Save">save</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+</mat-card>

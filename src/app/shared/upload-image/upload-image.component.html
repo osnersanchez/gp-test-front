@@ -1,0 +1,30 @@
+<div *ngIf=!simple>
+    <div class="upload" style="justify-content: center;">
+        <label (click)="onAlert.emit(disabled)" class="pic">
+          <input id="myfileinput" [disabled]="disabled" style="width: 250px" type="file" style="display: none;" name="files" multiple="true" accept="image/*" (change)="handleFileSelect($event)">
+          <mat-icon class="md-48">add_a_photo</mat-icon>
+      
+        </label>
+      </div>
+      <div id="selectedFiles" *ngIf="preview" class="images">
+        <div *ngFor="let image of list64; let i=index" id="{{'image'+i}}" class="content-img"> 
+          <img class="pic" style="max-width:100%; max-height:100%" [src]="image">
+          <mat-icon class="close-icon" (click)="delete(i)">close</mat-icon>
+        </div>
+      </div>
+</div>
+<div *ngIf=simple>
+    <div class="simple-upload" style="justify-content: center;">
+        <label (click)="onAlert.emit(disabled)" class="pic">
+          <input id="myfileinput" [disabled]="disabled" style="width: 250px" type="file" style="display: none;" name="files" multiple="false" accept="image/*" (change)="handleFileSelect($event)">
+          <mat-icon style="width: auto;" class="md-48">add_a_photo</mat-icon>
+      
+        </label>
+      </div>
+      <!-- <div id="selectedFiles" *ngIf="preview" class="images">
+        <div *ngFor="let image of list64; let i=index" id="{{'image'+i}}" class="content-img"> 
+          <img class="pic" style="max-width:100%; max-height:100%" [src]="image">
+          <mat-icon class="close-icon" (click)="delete(i)">close</mat-icon>
+        </div>
+      </div> -->
+</div>

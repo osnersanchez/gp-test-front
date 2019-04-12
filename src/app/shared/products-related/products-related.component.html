@@ -1,0 +1,39 @@
+<div style="position: relative;">
+    <div #related fxFlex fxLayoutAlign="start strech" class="scroll-x" *ngIf="products">
+        <!-- <div class="swiper-wrapper h-100"> -->
+        <!-- <div *ngFor="let product of products" class="swiper-slide product-item"> -->
+        <mat-card fxFlex="{{widthCard}}px" fxLayout="column" fxLayoutAlign="space-between strech" [ngStyle]="{margin: margin+'px'}" style="padding: 10px;"
+            *ngFor="let product of products">
+            <a [fxFlex]="'1 0%'" fxLayoutAlign="center center" [routerLink]="['/publications/publication/'+product?.id]">
+                <img class="image-link" *ngIf="product?.photo" [src]="enviroment+'/images/'+product?.photo" />
+                <img class="image-link" *ngIf="!product?.photo" src="" />
+                <!-- <div class="swiper-lazy-preloader"></div> -->
+            </a>
+            <!-- <h4 class="category text-muted">{{ product?.Seller }}</h4>                                                                      -->
+            <a [routerLink]="['/publications/publication/'+product?.id]" class="title text-truncate">
+                {{product.name}}
+            </a>
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                <div fxLayout="column" fxLayoutAlign="center start">
+                    <p class="new-price">${{product.price | number : '1.2-2'}}</p>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center end">
+                    <mat-chip-list style="top: auto;">
+                        <mat-chip style="cursor: pointer;" [routerLink]="['/publications/publication/'+product?.id]"
+                            color="warn" selected="true">Ver
+                            Detalles</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+        </mat-card>
+        <!-- </div> -->
+        <!-- </div> -->
+
+    </div>
+    <button mat-mini-fab (click)="move(-1)" class="btn-left">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="move(1)" class="btn-right">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</div>

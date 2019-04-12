@@ -1,0 +1,24 @@
+<!-- <div class="product-dialog close-btn-outer">
+  <button mat-mini-fab color="warn" (click)="close()"><mat-icon>close</mat-icon></button>
+</div> -->
+<section>
+    <h1 mat-dialog-title style="text-align:center;">Cambio de Estado</h1>
+    <div mat-dialog-content>
+        <div fxLayout="row wrap">  
+            <h3>Seleccione un Estado</h3><br>  
+            <div fxFlex="100" fxFlex.gt-sm="100">               
+                <mat-form-field style="width: 100%;">
+                  <mat-select placeholder="Estados">
+                    <mat-option *ngFor="let estado of statusList" [value]="statusList">
+                      {{estado}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>             
+        </div>
+      </div>
+      <div mat-dialog-actions align="center" fxLayoutAlign="space-between">
+        <button mat-button (click)="close()">Cancelar</button>
+        <button mat-raised-button (click)="confirm()" cdkFocusInitial color="primary">Guardar</button>
+      </div>
+</section>

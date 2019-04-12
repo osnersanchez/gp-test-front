@@ -1,0 +1,21 @@
+<mat-card>
+  <app-mask-loading [loading]="loading"></app-mask-loading>
+  <div fxLayout="row wrap">
+    <div fxFlex="100" class="p-2">
+      <h2 class="text-muted text-center">Nueva categoria</h2>
+      <form fxLayout="row wrap" fxLayoutAlign="space-around center" [formGroup]="formCategory" (ngSubmit)="save()">
+        <mat-form-field style="max-width: 300px; width: 100%">
+          <input matInput placeholder="Categoria" formControlName="name" required>
+          <mat-error *ngIf="formCategory.controls.name.errors?.required">Categoria requerida</mat-error>
+        </mat-form-field>
+        <div class="text-center mt-2">
+          <button mat-button mat-raised-button color="primary" class="mat-elevation-z6">
+            Guardar
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+
+      </form>
+    </div>
+    </div>
+</mat-card>

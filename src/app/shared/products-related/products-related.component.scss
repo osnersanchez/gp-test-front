@@ -1,0 +1,41 @@
+.swiper-container{
+    padding: 16px 2px 2px 2px;
+    .swiper-slide{
+        text-align: center;
+    }
+}
+.swiper-button-next.swiper-button-disabled, 
+.swiper-button-prev.swiper-button-disabled{
+    pointer-events: auto;
+}
+
+.product-item{
+    height: 100%;
+}
+
+.swiper-wrapper{
+    display: flex;
+    align-items: stretch;
+}
+
+.image-link{
+    width: 100%;
+    // height: 100%;
+}
+
+.btn-left{
+    position: absolute;
+    left: 2%;
+    top: 45%;
+}
+
+.btn-right{
+    position: absolute;
+    left: 95%;
+    top: 45%;
+}
+
+.scroll-x{
+    overflow-x: auto;
+    margin: 0px 50px;
+}

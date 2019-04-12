@@ -1,0 +1,129 @@
+<!-- CONTENT -->
+<div class="content-carousel">
+    
+    <h1 class="title-text">Las mejores tiendas te esperan <a href="#" class="route-link">Ver tiendas</a></h1>
+
+    <!-- SUB CONTENT PRODUCTS -->
+    <div *ngIf="shops" class="swiper-container" [swiper]="config">
+
+        <!-- CONTENT PRODUCTS -->
+        <div class="swiper-wrapper h-100">
+
+            <!-- CARD PRODUCTS -->
+            <div *ngFor="let shop of shops" class="swiper-slide">
+                
+                <!-- PRODUCT -->
+                <div class="product-1 position-relative">
+                    
+                    <!-- BANNER HEADER -->
+                    <div class="header-product-content">
+                       <img src="{{shop.StoreBackgroundUrl}}" class="header-img" >
+                    </div>
+                    <!--/ FIN BANNER HEADER -->
+
+                    <!-- LOGO -->
+                    <div class="content-logo">
+                        <img src="{{shop.StoreLogoUrl}}" alt="" class="logo-img" />              
+                    </div>
+                    <!--/ FIN LOGO -->
+
+                    <!-- TITLE -->
+                    <div class="content-title">
+                        {{shop.StoreName}}
+                    </div>
+                    <!--/ FIN TITLE -->
+
+                    <!-- CONTENTS LOGO -->
+                    <div class="content-products">
+                        <div *ngFor="let product of shop.Products" class="wrapper-product">
+                            <img src="{{product.ProductUrl}}" alt="" class="img-product" (click)="goToProduct(product)">        
+                        </div>
+                        
+                    </div>
+                    <!--/ FIN CONTENTS LOGO -->
+                    
+                    <!-- BUTTON -->
+                    <div class="shop-go-store-margin">
+                        <a class="btn-view-shop" (click)="goToStore(shop)" > Ver tienda </a>
+                    </div>
+                    <!--/ FIN BUTTON -->
+
+                </div>
+                <!--/ FIN PRODUCT -->
+
+
+            </div>
+            <!--/ FIN CARD PRODUCTS -->
+
+        </div>
+        <!--/ FIN CONTENT PRODUCTS -->
+
+    </div>
+    <!--/ FIN SUB CONTENT PRODUCTS-->
+    
+    <!-- BUTTONS TRANSITION -->
+    <button mat-mini-fab class="swiper-button-prev swipe-arrow shop-carousel">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-mini-fab class="swiper-button-next swipe-arrow shop-carousel">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <!--/ FIN BUTTONS TRANSITION -->
+
+</div>
+<!--/ FIN CONTENT -->
+
+
+<!--
+<div *ngIf="products" class="swiper-container" [swiper]="config">
+    <div class="swiper-wrapper h-100">
+        <div *ngFor="let product of products" class="swiper-slide">
+            <mat-card class="product-item position-relative">
+                <div class="box position-relative">
+                    <mat-chip-list *ngIf="product.Discount">
+                        <mat-chip color="warn" selected="true">{{product.discount}}% OFF</mat-chip>
+                    </mat-chip-list>
+                    <a [routerLink]="['/products', product.Id]" class="image-link">
+                        <img src="assets/images/products/shops/banner-xbox.jpg" class="swiper-lazy img-init" />
+                        <div class="swiper-lazy-preloader"></div>
+                    </a>
+                    
+              
+                    <div class="w-100 d-flex justify-content-center">
+                        <img src="assets/images/products/shops/red.jpeg" alt="" class="shop-logo" />
+                    </div>
+                    
+                    
+           
+                    <h2 class="shop-title">Xbox</h2>
+
+         
+                    <div class="w-100">
+                        <div class="text-center">
+                            <div class="content-product-shop">
+                            <img src="assets/images/products/shops/controller-xbox.jpg" class="img-product-shop">
+                        </div>
+                        <div class="content-product-shop">
+                        <img src="assets/images/products/shops/controller-xbox-1.jpg" class="img-product-shop">
+                    </div>
+                    <div class="content-product-shop">
+                    <img src="assets/images/products/shops/controller-xbox-2.jpg" class="img-product-shop">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="icons">
+        <a class="btn-view-shop">Ver tienda</a>
+    </div>
+</mat-card>
+</div>
+<button mat-mini-fab class="swiper-button-prev swipe-arrow">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+<button mat-mini-fab class="swiper-button-next swipe-arrow">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+</button>
+</div>
+
+</div>
+-->

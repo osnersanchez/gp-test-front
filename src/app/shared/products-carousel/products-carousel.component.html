@@ -1,0 +1,62 @@
+<div class="main-content-carousel-product">
+
+   <h1 _ngcontent-c19="" class="font-weight">{{productsTitle}} <a _ngcontent-c19="" class="route-link" href="#">Ver más</a></h1>
+
+   <!-- NGIF PRODUCTS -->
+   <div *ngIf="products" class="swiper-container" [swiper]="config">
+
+    <!-- CONTENT -->
+    <div class="swiper-wrapper h-100">
+
+        <!-- NGFOR PRODUCT -->
+        <div *ngFor="let product of products" class="swiper-slide">
+
+            <!-- CARD PRODUCT -->
+            <div  [routerLink]="['/publications/publication', product.ProductId]" class="product position-relative">
+
+                <!-- HEADER -->
+                <div class="header-product">
+                 <mat-icon class="icon-favorite" id={{product.Id}} (click)='onClickMe(product.Id)'>favorite_border</mat-icon>
+                 <img [attr.data-src]="product.ProductUrl" class="swiper-lazy img-init hero-image" />
+                 <div  class="icons tag-product" [ngStyle]="{'background-color': product.BgColor}">
+                 </div>
+             </div>
+             <!--/ END HEADER -->
+
+             <!-- BODY PRODUCT -->
+             <div class="box">
+                <div class="content-line">
+                    <mat-icon class="icon-color">local_shipping</mat-icon>
+                </div>
+
+                <div class="body-product">
+                    <p *ngIf="product.DiscountPercentage">${{product.Price | number : '1.'}}</p>
+                    <p *ngIf="product.DiscountPercentage" class="new-price" >${{product.PriceDiscount | number : '1.'}}<span *ngIf="product.DiscountPercentage" class="text-porcent"> {{product.DiscountPercentage * 100}}% OFF</span></p>
+                    <p *ngIf="!product.DiscountPercentage" class="new-price" >${{product.Price | number : '1.'}}</p>
+                    <p *ngIf="product.Fees" class="font">{{product.Fees}}x $ {{product.AmountFee}} sin interés</p>
+                    <p class="hide-text">{{product.ProductDescription}}</p>
+                </div>
+            </div>
+            <!--/ END BODY PRODUCT -->
+
+        </div>
+        <!--/ END CARD PRODUCT -->
+
+    </div>
+    <!--/ END NGFOR PRODUCT -->
+
+</div>
+<!--/ END CONTENT -->
+
+</div>
+<!--/ FIN NGIF PRODUCTS -->
+
+<!-- BTN CAROUSEL PRODUCT NAV -->
+<button mat-mini-fab class="swiper-button-prev swipe-arrow {{productClassName}}">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+<button mat-mini-fab class="swiper-button-next swipe-arrow {{productClassName}}">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+</button>
+<!--/ END BTN CAROUSEL PRODUCT NAV -->
+</div>

@@ -1,0 +1,25 @@
+
+<div  [routerLink]="['/publications/publication', product?.Id]" class="product position-relative">
+    <div class="header-product">
+        <mat-icon class="icon-favorite" id={{product?.Id}} [routerLink]="['/publications/publication/', product?.Id]">favorite_border</mat-icon>             
+        <img [src]="product?.Photo" class="swiper-lazy img-init hero-image" />
+        <!-- <div  class="icons tag-product" [ngStyle]="{'background-color': product.BgColor}"></div> -->
+    </div>
+
+    <div class="box">
+        <div class="content-line">
+            <mat-icon class="icon-color">local_shipping</mat-icon>
+        </div>
+
+        <div class="body-product">
+            <!-- <p *ngIf="product.DiscountPercentage">${{product.Price | number : '1.'}}</p>
+            <p *ngIf="product.DiscountPercentage" class="new-price" >${{product.PriceDiscount | number : '1.'}}<span *ngIf="product.DiscountPercentage" class="text-porcent"> {{product.DiscountPercentage * 100}}% OFF</span></p>
+            <p *ngIf="!product.DiscountPercentage" class="new-price" >${{product.Price | number : '1.'}}</p>
+            <p *ngIf="product.Fees" class="font">{{product.Fees}}x $ {{product.AmountFee}} sin interés</p> -->
+            <p class="new-price">${{product?.Price | number : '1.'}}</p>
+            <p class="hide-text">{{product?.Category}}</p>
+            <p class="hide-text">{{product?.Title}}</p>
+            <p class="hide-text">{{product?.Description}}</p>
+        </div>
+    </div>        
+</div>

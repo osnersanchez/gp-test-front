@@ -1,0 +1,75 @@
+<!-- MAIN CONTENT -->
+<div class="mt-products-category h-category">
+	
+	<div class="d-flex justify-content-between align-items-center">
+		<!-- TITLE -->
+		<h1 class="title">Categoría populares</h1>
+		<!--/ END TITLE -->
+
+		<ul class="list-none d-flex align-items-center">
+			<li class="d-block-inline"><div class="circle"></div></li>
+			<li class="d-block-inline"><div class="circle-active"></div></li>
+			<li class="d-block-inline"><div class="circle"></div></li>
+		</ul>
+	</div>
+	
+
+	<!-- NGIF PRODUCTS -->
+	<div *ngIf="categories" class="swiper-container" [swiper]="config">
+		
+		<!-- CONTENT -->
+		<div class="swiper-wrapper">
+
+			<!-- NGFOR PRODUCT -->
+			<div *ngFor="let page of categories"  class="swiper-slide">
+				
+				<!-- CARD PRODUCT -->
+				<div class="content-collect">
+					
+					<!-- ROW 1 -->
+					<div *ngFor="let category of page.Items" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.0%" fxLayoutAlign="center" class="h-170 section-t">
+						
+						<!-- ITEM -->
+						<div  *ngFor="let testCat of category"  fxFlex="16.66666666666667%" class="product-item">
+							<div class="flex-centered">
+								<div class="justify-content-center">
+									<i class="material-icons font-60px">
+										photo_camera
+									</i>
+									<p>{{testCat.CategoryName}}</p>
+								</div>
+							</div>
+						</div>
+						<!--/ END ITEM -->
+						
+						
+					</div>
+					<!--/ END ROW 1 -->
+
+					<!-- ROW 2 -->
+					
+					<!--/ END ROW 2 -->
+
+				</div>
+				<!--/ END CARD PRODUCT -->
+
+			</div>
+			<!--/ END NGFOR PRODUCT -->
+
+		</div>
+		<!--/ END CONTENT -->
+
+	</div>
+	<!--/ END NGIF PRODUCTS -->
+
+	<!-- BTN CAROUSEL PRODUCT NAV -->
+	<button mat-mini-fab class="swiper-button-prev swipe-arrow">
+		<mat-icon>keyboard_arrow_left</mat-icon>
+	</button>
+	<button mat-mini-fab class="swiper-button-next swipe-arrow">
+		<mat-icon>keyboard_arrow_right</mat-icon>
+	</button>
+	<!--/ END BTN CAROUSEL PRODUCT NAV -->
+
+</div>
+<!--/ END MAIN CONTENT -->

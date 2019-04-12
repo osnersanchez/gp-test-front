@@ -1,0 +1,242 @@
+mat-card {
+  border: none;
+  box-shadow: 0px 12px 20px -9px rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  padding: 0;
+  height: 26em;
+}
+
+.box {
+  position: relative;
+  height: 14rem;
+}
+.swiper-container {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  height: 27rem;
+}
+
+.swipe-arrow {
+  position: absolute;
+  top: 93%;
+  margin-top: -22px;
+  z-index: 10;
+  background-image: none;
+}
+.img-init {
+  height: 145px;
+}
+.prices {
+  padding: 0px 20px;
+  position: absolute;
+  bottom: -85px;
+}
+
+.product-item .icons {
+  margin: 0;
+  padding-top: 11px;
+  height: 53px;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  align-items: center;
+  border-radius: 0px 0px 16px 16px;
+}
+
+.swiper-container {
+  padding: 16px 2px 2px 2px;
+  .swiper-slide {
+    text-align: center;
+  }
+}
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  pointer-events: auto;
+}
+
+//  --------------------------------------------------------
+//  CUSTOM
+//  --------------------------------------------------------
+
+.hide-text {
+  display: none; 
+}
+
+.position-relative { position: relative; }
+
+.swiper-button-prev {
+  width: 64px!important;
+  height: 64px!important;
+  border-radius: 100%!important;
+  left: -30px!important; 
+  background-color: #fff!important; 
+}
+
+.swiper-button-next {
+  width: 64px!important; 
+  height: 64px!important; 
+  border-radius: 100%!important; 
+  right: -30px!important; 
+  background-color: #fff!important;
+}
+
+.swipe-arrow {
+  position: absolute;
+  top: 40%;
+  border-radius: 50% !important;
+  margin-top: -22px;
+  z-index: 10;
+  background-image: none;
+  transition: box-shadow .1s ease-out;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-content-carousel-product {
+  position: relative; 
+  height: 27rem
+}
+
+.icon-favorite {
+  color: #ea544e;
+  position: absolute;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  align-items: center!important;
+  justify-content: center;
+  margin: 10px;
+  background-color: #ffffff8c;
+  border-radius: 100%;
+  display: none;
+  cursor: pointer;
+}
+
+.product {
+  border: none;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px !important;
+  height: 320px;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: #FFF;
+  transition: box-shadow 0.1s ease, height 0.1s ease-in;
+}
+
+.product:hover {
+  box-shadow: 0 7px 16px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  height: 360px !important;
+}
+
+.product:hover .icon-favorite {
+  display: flex;
+}
+
+.product:hover .hide-text {
+  display: block; 
+  font-size: 12px;
+  padding-top: 7px;
+}
+
+.header-product {
+  height: 224px !important;
+  width: 100% !important;
+}
+
+.hero-image {
+  width: 100%!important; 
+  height: 100%!important;
+}
+
+.box {
+  border-top: 1px solid #8fcdc1 !important;
+  position: relative !important;
+}
+
+.content-line {
+  height: 34px !important;
+  width: 34px !important;
+  border-radius: 100% !important;
+  border: 1px solid #8fcdc1 !important;
+  position: absolute !important;
+  top: -17px !important;
+  background-color: #FFF !important;
+  right: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.icon-color {
+  color: #62beb0;
+  position: absolute;
+  right: 0;
+  padding: 5px;
+}
+
+.body-product {
+  padding-right: 18px !important;
+  padding-left: 18px !important;
+  height: 100%;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  text-align: left !important;
+}
+
+.text-porcent {
+  font-size: 14px;
+  color: #39b54a;
+}
+
+.price-discount {
+  font-size: 12px; 
+  color: gray; 
+  text-decoration: line-through;
+}
+
+.new-price {
+  font-size: 24px!important;
+  color: #1e202a!important;
+}
+
+.font {
+  font-size: 14px;
+}
+
+.tag-product {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 34px;
+  left: -90px;
+  box-shadow: 2px 2px 18px #78636394;
+  transform: rotate(-45deg);
+}
+
+.font-weight {
+  font-weight: 300 !important;
+}
+
+.route-link {
+  text-decoration: none;
+  color: #25879e;
+  font-size: 18px;
+}
+
+//  ----------------------------------
+//  Media queries
+//  ----------------------------------
+
+@media (max-width: 1279px) {
+  .swiper-button-prev {
+    left: 0px!important; 
+  } 
+
+  .swiper-button-next {
+    right: 0px!important;
+  } 
+}

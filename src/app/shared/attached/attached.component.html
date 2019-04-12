@@ -1,0 +1,22 @@
+<input (change)="upload($event.target.files[0])" accept="image/*" style="display: none;" type="file" name="upload"
+  id="fileElem1" #fileInput>
+
+<section *ngIf="!file" class="content-attached" (click)="openGalery(); fileInput.click()">
+  <!-- <div class="content-img" [ngStyle]="fullSize?{width:'140px',height:'140px'}:{width:'40px',height:'40px'}"> -->
+  <div class="content-img">
+    <!-- <img style="max-height: 100%;max-width: 100%;" [src]="fullSize?'../../../assets/app-icons/icons8-picture-120.png':'../../../assets/app-icons/icons8-picture-40.png'"
+      alt="add"> -->
+    <i style="font-size: 50px" class="material-icons">attach_file</i>
+  </div>
+  <span style="font-weight: 800">{{title}}</span>
+  <span>{{sizeTitle}}</span>
+</section>
+
+<section #imgContent *ngIf="file" class="content-attached" (click)="openGalery(); fileInput.click()">
+  <div class="content-img" [ngStyle]="{width:getWidth(imgContent)+'px',height:getHeight(imgContent)+'px'}">
+    <img style="max-height: 100%;max-width: 100%; border-radius: 10px;" [src]="file" alt="">
+  </div>
+  <div class="content-icon">
+      <i class="material-icons">attach_file</i>
+  </div>
+</section>

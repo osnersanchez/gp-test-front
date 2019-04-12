@@ -1,0 +1,354 @@
+<!-- CONTENT PAGE -->
+<mat-sidenav-container class="sidenav-home-container">
+
+       
+    <!-- SIDEBAR -->
+    <mat-sidenav  [fixedInViewport]="true" [fixedTopGap]="0" [opened]="false" mode="over" #sidenav class="sidenav mat-elevation-z6 sidenav-home">
+        <!-- <button mat-icon-button color="warn" class="close" (click)="sidenav.close()">
+            <mat-icon color="warn">close</mat-icon>
+        </button> -->
+        
+        
+        <div class="divider"></div>
+
+       
+        
+        <div class="menu-item margin-sidenav-content">
+            <a class="margin-sidenav-item"  mat-button
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/']"  
+                (click)="sidenav.toggle()"       
+                >
+                <mat-icon class="icons-blue" >home</mat-icon>
+                <span class="menu-title"> Home</span>
+            </a>
+
+            <a class="margin-sidenav-item" mat-button
+                *ngIf="isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/products-order']"        
+                (click)="sidenav.toggle()" 
+                >
+                <mat-icon class="icons-blue">chrome_reader_mode</mat-icon>
+                <span class="menu-title"> Mis Pedidos</span>
+            </a>
+
+            <a class="margin-sidenav-item" mat-button
+                *ngIf="isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/publications']"    
+                (click)="sidenav.toggle()"    
+                >
+                <mat-icon class="icons-blue">description</mat-icon>
+                <span class="menu-title"> Mis Publicaciones</span>
+            </a>
+
+            <a class="margin-sidenav-item" mat-button
+                *ngIf="isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/publications/create']"        
+                (click)="sidenav.toggle()"
+                >
+                <mat-icon class="icons-blue">note_add</mat-icon>
+                <span class="menu-title"> A&ntilde;adir una
+                    producto</span>
+            </a>
+
+            <a class="margin-sidenav-item"  mat-button
+                *ngIf="isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/publications/category']"  
+                (click)="sidenav.toggle()"  
+                >
+                <mat-icon class="icons-blue">store</mat-icon>
+                <span class="menu-title">Crear nueva categoria</span>
+            </a>
+
+            <div class="divider"></div>
+
+            <a  class="margin-sidenav-item" mat-button
+                *ngIf="isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                
+                (click)="sidenav.toggle();signOut()"  
+                >
+                <mat-icon class="icons-blue">cancel</mat-icon>
+                <span class="menu-title"> Cerrar sesi&oacute;n</span>
+            </a>
+
+            <a class="margin-sidenav-item" mat-button
+                *ngIf="!isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/sign-in']" 
+                (click)="sidenav.toggle()"  
+                >
+                <mat-icon class="icons-blue">add_circle_outline</mat-icon>
+                <span class="menu-title"> Crear cuenta</span>
+            </a>
+
+            <a class="margin-sidenav-item" mat-button
+                *ngIf="!isLoggedIn"
+                fxLayout="row" fxLayoutAlign="start center center"
+                [routerLink]="['/sign-in']" 
+                (click)="sidenav.toggle()"  
+                >
+                <mat-icon class="icons-blue">send</mat-icon>
+                <span class="menu-title"> Ingresa</span>
+            </a>
+
+
+            
+            
+            
+        </div>        
+        <div class="divider"></div>
+        <div class="text-center py-2">
+            <svg class="social-icon" viewBox="0 0 24 24">
+                <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M18,5H15.5A3.5,3.5 0 0,0 12,8.5V11H10V14H12V21H15V14H18V11H15V9A1,1 0 0,1 16,8H18V5Z" />
+            </svg>
+            <svg class="social-icon" viewBox="0 0 24 24">
+                <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M17.71,9.33C18.19,8.93 18.75,8.45 19,7.92C18.59,8.13 18.1,8.26 17.56,8.33C18.06,7.97 18.47,7.5 18.68,6.86C18.16,7.14 17.63,7.38 16.97,7.5C15.42,5.63 11.71,7.15 12.37,9.95C9.76,9.79 8.17,8.61 6.85,7.16C6.1,8.38 6.75,10.23 7.64,10.74C7.18,10.71 6.83,10.57 6.5,10.41C6.54,11.95 7.39,12.69 8.58,13.09C8.22,13.16 7.82,13.18 7.44,13.12C7.81,14.19 8.58,14.86 9.9,15C9,15.76 7.34,16.29 6,16.08C7.15,16.81 8.46,17.39 10.28,17.31C14.69,17.11 17.64,13.95 17.71,9.33Z" />
+            </svg>
+            <svg class="social-icon" viewBox="0 0 24 24">
+                <path d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M19.5,12H18V10.5H17V12H15.5V13H17V14.5H18V13H19.5V12M9.65,11.36V12.9H12.22C12.09,13.54 11.45,14.83 9.65,14.83C8.11,14.83 6.89,13.54 6.89,12C6.89,10.46 8.11,9.17 9.65,9.17C10.55,9.17 11.13,9.56 11.45,9.88L12.67,8.72C11.9,7.95 10.87,7.5 9.65,7.5C7.14,7.5 5.15,9.5 5.15,12C5.15,14.5 7.14,16.5 9.65,16.5C12.22,16.5 13.96,14.7 13.96,12.13C13.96,11.81 13.96,11.61 13.89,11.36H9.65Z" />
+            </svg>
+        </div>
+    </mat-sidenav>
+    <!--/ END SIDEBAR -->
+
+    <!-- HEADER -->
+    <mat-toolbar color="primary">
+
+        <!-- TOP NAVBAR -->
+        <mat-toolbar-row fxShow.xs="false" fxShow.sm="false"   class="logo-toolbar p-nav justify-content-between theme-container p-nav">
+
+            <!-- FORM SEARCH -->
+            <div class="align-items-center w-100 toolbar-top-margin">
+
+                <!-- LOGO -->
+                <div class="logo-center-content" >
+                    <img routerLink="/" class="logo-img" src="https://goodpanda.com/assets/img/logo.svg" alt="GoodPanda">
+                    <a  class="logo" routerLink="/" (click)="closeSubMenus()"> Test</a>
+                </div>
+                <!--/ END LOGO -->
+
+                <!-- FORM SEARCH -->
+                <div fxFlexOffset.gt-sm="5" fxShow="false" fxShow.gt-sm class="w-100">
+                    <form (keydown.enter)=" search()" class="search-form" fxLayout="row">
+                        <input [(ngModel)]="searchKeysValue"  name="search" type="text" placeholder="Buscar productos, marcas y más..."  [matAutocomplete]="auto"
+                        #trigger="matAutocompleteTrigger" fxFlex>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let state of searchList " [value]="state.Title"  (keydown.enter)="onClickSearchDetail(state)" (click)="onClickSearchDetail(state)">
+                              <img class="example-option-img" aria-hidden [src]="state.Photo" height="30">
+                              <span>{{state.Title}}</span> |
+                              <small>{{state.Category}}</small>
+                          </mat-option>
+                      </mat-autocomplete>
+                      <button mat-mini-fab (click)="search()" type="button" class="search-btn mat-elevation-z0 text-muted">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </form>
+            </div>
+            <!--/ END FORM SEARCH -->
+
+             <!-- TEXT -->
+             <p  fxFlexOffset.gt-sm="5" class="centered-flex">
+                    <mat-icon _ngcontent-c2="" class="mat-icon material-icons mr-1" role="img" aria-hidden="true">book</mat-icon>
+                    <span>Te ayudamos a tener la mejor compra</span>
+             </p>
+             <!--/ END TEXT -->
+            
+
+        </div>
+        <!--/ END FORM SEARCH -->
+
+       
+
+    </mat-toolbar-row>
+    <!--/ END TOP NAVBAR -->
+
+    <!-- BOTTOM NAVBAR -->
+    <mat-toolbar-row fxLayoutAlign="start" class="top-toolbar theme-container p-nav h-45px white-space-normal">
+
+        <div class="w-100 align-items-center justify-content-between d-flex">
+
+            <!-- CATEGORY -->
+            <div fxShow.xs="false" fxShow.sm="false"   class="dropdown">
+
+               
+
+                <span  [matMenuTriggerFor]="appMenu" class="text-category text-verde">Categoria<mat-icon _ngcontent-c2="" aria-hidden="true" class="mat-icon material-icons" role="img">expand_more</mat-icon></span>
+
+                <mat-menu class="menu-category-1" [overlapTrigger]="false" #appMenu="matMenu">
+                    <div class="arrow-black-top" ></div>
+                        <button [routerLink]="['/publications/search/'+child.id]" class="item-category-1" *ngFor="let child of categories" 
+                        mat-menu-item >{{child.name}}</button>
+                </mat-menu>
+
+                
+               
+                <!--/ END OPC DEPLOY -->
+            </div>
+            <!--/ END CATEGORY -->
+
+            <!-- NAV OPTION CENTER -->
+            <div>
+                <ul class="list-unstyled link-nav-center navbar-links">
+                    <li fxShow.xs="false" fxShow.sm="false"   ><a routerLink="/" >Home</a></li>
+                    <li fxShow.xs="false" fxShow.sm="false" *ngIf="isLoggedIn" ><a [routerLink]="['/products-order']">Mis Pedidos</a></li>
+                    <li fxShow.xs="false" fxShow.sm="false" *ngIf="isLoggedIn" ><a [routerLink]="['/publications']">Publicaciones</a></li>
+                    <li fxShow.xs="false" fxShow.sm="false" *ngIf="isLoggedIn" ><a [routerLink]="['/publications/create']">A&ntilde;adir una publicaci&oacute;n</a></li>
+                    <li fxShow.xs="false" fxShow.sm="false" *ngIf="isLoggedIn" ><a [routerLink]="['/publications/category']">Nueva Categoria</a></li>
+                </ul>
+            </div> 
+            <!--/ END NAV OPTION CENTER -->
+
+            <!-- NAV OPTION END -->
+            <div  ngClass.sm="align-items-center w-100 toolbar-top-margin" ngClass.xs="align-items-center w-100 toolbar-top-margin"  >
+                
+                <ul class="list-unstyled link-nav-end">
+                    <div class="logo-center-content" > 
+                        <img routerLink="/"  fxShow.md="false" fxShow.lg="false" fxShow.xl="false" class="logo-img" src="https://goodpanda.com/assets/img/logo.svg" alt="GP">
+                    </div>
+                    <li fxShow.xs="false" fxShow.sm="false"   ><a  *ngIf="!isLoggedIn" mat-button [routerLink]="['/sign-in']">Crear cuenta</a></li>
+                    <li fxShow.xs="false" fxShow.sm="false"   ><a  *ngIf="!isLoggedIn" mat-button [routerLink]="['/sign-in']">Ingresa</a></li>
+                    <li (click)="signOut()" fxShow.xs="false" fxShow.sm="false"   ><a  *ngIf="isLoggedIn" mat-button >Cerrar sesi&oacute;n</a></li>
+                    <!-- <li><a href="#" *ngIf="!isLoggedIn" mat-button [routerLink]="['/sign-in']">Ayuda</a></li> -->
+
+                        <div fxFlexOffset.gt-xs="5" fxFlex fxFlexOffset.gt-sm="10" fxHide="false" fxHide.gt-sm>
+                            
+                                <form    (keydown.enter)=" search($event)" class="search-form margin-mobile-menu" fxLayout="row">
+                                    <input class="search-bar-mobile"  [(ngModel)]="searchKeysValue"  name="search" type="text" placeholder="Buscar productos, marcas y más..." (keyup)="onKey($event)" [matAutocomplete]="auto"
+                                    #trigger2="matAutocompleteTrigger" fxFlex>
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let state of searchList " [value]="state.Title"  (keydown.enter)="onClickSearchDetail(state)" (click)="onClickSearchDetail(state)">
+                                        <img class="example-option-img" aria-hidden [src]="state.Photo" height="25">
+                                        <span>{{state.Title}}</span> |
+                                        <small>{{state.Category}}</small>
+                                    </mat-option>
+                                </mat-autocomplete>
+                                <button mat-mini-fab (click)="search()" type="button" class="search-btn mat-elevation-z0 text-muted">
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </form>
+                        </div>
+
+                    <div fxFlexOffset="0" fxLayout="row" fxLayoutAlign="center center">
+                        <div fxLayoutAlign="center center">
+
+                            <div fxShow.md="false" fxShow.lg="false" fxShow.xl="false" >
+                                <div [ngClass]="{'open': sidenav.opened}" (click)="sidenav.toggle()" class="wrapper-menu">
+                                        <div class="line-menu half start"></div>
+                                        <div class="line-menu"></div>
+                                        <div class="line-menu half end"></div>
+                                        
+
+                                      </div>
+                                      <div *ngIf="sidenav.opened" class="arrow-white-top" ></div>
+                            </div>
+
+
+                            
+                            <!-- <button fxShow.md="false" fxShow.lg="false" fxShow.xl="false" mat-button (click)="sidenav.toggle()" class="sidenav-toggle">
+                                    <mat-icon>menu</mat-icon>
+                                    <div *ngIf="sidenav.opened" class="arrow-white-top" ></div>
+                                </button> -->
+
+                            
+                            <button mat-button [matMenuTriggerFor]="cartMenu" #cartMenuTrigger="matMenuTrigger" class="flex-row-button">
+                                <mat-icon class="mat-icon-lg color-icon car-shopping">shopping_cart</mat-icon>
+                                <span *ngIf="appService.Data.cartList.length > 0" class="cart-items-count">{{appService.Data.cartList.length}}</span>
+                                <div fxLayout="column" fxLayoutAlign="center center" fxShow="false" fxShow.gt-xs class="top-cart">
+                                    <span *ngIf="appService.Data.cartList.length > 0">{{appService.Data.cartList.length}} item<span
+                                        *ngIf="appService.Data.cartList.length > 1">s</span> -
+                                        $<span>{{appService.Data.totalPrice | number : '1.2-2'}}</span>
+                                    </span>
+                                </div>
+                            </button>
+                            <mat-menu #cartMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="top-menu-dropdown cart-dropdown">
+                                <span (mouseleave)="cartMenuTrigger.closeMenu()" class="d-block">
+                                    <div fxLayout="row" fxLayoutAlign="space-between center" class="text-muted">
+                                        <b><span>{{items?.length}} ITEM<span *ngIf="items?.length > 1">S</span></span></b>
+                                        <b><a [routerLink]="['/cart']" class="text-muted">VER CARRITO</a></b>
+                                    </div>
+                                    <div class="divider mt-1"></div>
+                                    <div *ngIf="items?.length == 0" class="py-1 text-muted text-center">You
+                                    have no items in your shopping cart.</div>
+                                    <mat-list>
+                                        <mat-list-item *ngFor="let product of items">
+                                            <h3 matLine class="text-muted"> {{product.Title}} </h3>
+                                            <p matLine class="text-muted">
+                                                <span> {{product.Quantity}} x ${{product.Price | number : '1.2-2'}} </span>
+                                            </p>
+                                            <img [src]="product.Image" alt="image">
+                                            <button mat-icon-button color="warn" class="remove" (click)="remove(product);stopClickPropagate($event)"
+                                            matTooltip="Remove" matTooltipPosition="before">
+                                            <mat-icon class="mat-icon-sm">close</mat-icon>
+                                        </button>
+                                    </mat-list-item>
+                                </mat-list>
+                                <div *ngIf="appService.Data.cartList.length > 0" class="cart-dropdown-footer">
+                                    <div class="divider mt-1"></div>
+                                    <div fxLayout="row" fxLayoutAlign="space-between center" class="text-muted mt-1">
+                                        <b>TOTAL:</b>
+                                        <b class="new-price">${{appService.Data.totalPrice | number : '1.2-2'}}</b>
+                                    </div>
+                                    <div class="divider mt-1"></div>
+                                    <div fxLayout="row" fxLayoutAlign="space-between center" class="mt-1">
+                                        <button mat-mini-fab color="warn" (click)="clear();stopClickPropagate($event)"
+                                        matTooltip="Clear All" matTooltipPosition="after">
+                                        <mat-icon>remove_shopping_cart</mat-icon>
+                                    </button>
+                                    <a [routerLink]="['/checkout']" mat-mini-fab color="primary" matTooltip="Checkout"
+                                    matTooltipPosition="before">
+                                    <mat-icon>check</mat-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </span>
+                </mat-menu>
+            </div>
+        </div>
+    </ul>
+</div>
+<!--/ END NAV OPTION END -->
+</div>
+</mat-toolbar-row>
+<!--/ END BOTTOM NAVBAR -->
+
+<!-- TOP NAVBAR RESPONSIVE -->
+
+<!--/ END NAVBAR RESPONSIVE -->
+
+</mat-toolbar>
+<!--/ END HEADER -->
+
+<!-- NAVBAR -->
+<!--<app-menu *ngIf="categories" [categories]="categories" fxShow="false" fxShow.gt-sm></app-menu>-->
+<!--/ END NAVBAR -->
+
+<!-- MAIN CONTENT BODY -->
+<div>
+
+    <!-- BREADCUMBS -->
+    <app-breadcrumb *ngIf="showBreadcrumb"></app-breadcrumb>
+    <!--/ END BREADCUMBS -->
+
+    <!-- ROUTER BODY -->
+    <router-outlet></router-outlet>
+    <!--/ END ROUTER BODY -->
+</div>
+<!--/ END MAIN CONTENT BODY -->
+
+<!-- FOOTER -->
+<app-footer></app-footer>
+<!--/ END FOOTER -->
+
+<!-- BTN SCROLL UP -->
+<div *ngIf="showBackToTop" fxLayout="row" fxLayoutAlign="center center" class="back-to-top transition" (click)="scrollToTop()">
+    <mat-icon>arrow_upward</mat-icon>
+</div>
+<!--/ FIN SCROLL UP -->
+
+</mat-sidenav-container> 
+<!--/ FIN CONTENT PAGE -->

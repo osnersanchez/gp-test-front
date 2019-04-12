@@ -1,0 +1,68 @@
+<mat-card>
+  <app-mask-loading [loading]="loading"></app-mask-loading>
+  <mat-horizontal-stepper *ngIf="horizontalStepper" [linear]="isLinear" #stepper>
+
+    <!-- Primer Step Informacion del Producto -->
+    <mat-step [stepControl]="productAttachedForm && productInformationForm && productTypeForm">
+      <ng-template matStepLabel>Información del Producto</ng-template>
+      <ng-container [ngTemplateOutlet]="productInformation"></ng-container>
+      <div style="display:flex; justify-content: flex-end;">
+        <button mat-button mat-raised-button [disabled]="isModified()" (click)="guardar()">Guardar</button>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+  <mat-vertical-stepper *ngIf="!horizontalStepper" [linear]="isLinear">
+
+    <!-- Primer Step Informacion del Producto -->
+    <mat-step [stepControl]="productAttachedForm && productInformationForm && productTypeForm">
+      <ng-template matStepLabel>Información del Producto</ng-template>
+      <ng-container [ngTemplateOutlet]="productInformation"></ng-container>
+      <div style="display:flex; justify-content: flex-end;">
+        <button mat-button mat-raised-button [disabled]="isModified()" (click)="guardar()">Guardar</button>
+      </div>
+    </mat-step>
+   
+  </mat-vertical-stepper>
+</mat-card>
+
+<ng-template #productInformation>
+  <div fxLayout="row"  fxLayout.lt-sm="column">
+    <div style="width: 100%;">
+      <app-links [links]="publicationDetails?.ExternalLinks" (onLinks)="publicationDetails.ExternalLinks=$event"></app-links>
+
+      <div *ngIf="publicationDetails?.ExternalLinks?.length > 0" class="mat-table orders-table" style="width: 100%;">
+        <h2 class="text-muted text-center">Links Añadidos</h2>
+        <div *ngFor="let att of publicationDetails?.ExternalLinks; let idx = index" class="mat-row filter-row mat-elevation-z1 text-muted">
+          <div class="mat-cell">
+            <span class="order">{{att.title}}</span>
+          </div>
+          <div class="mat-cell">{{att.type}}</div>
+
+          <div class="p-1 actions">
+            <button mat-mini-fab color="primary" style="background-color: red;" matTooltip="eliminar" (click)="removeLinks(idx)">
+              <mat-icon >clear</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%;">
+      <h2 class="text-muted text-center">Fotos del Producto</h2>
+      <app-upload-image [max]="3" [cant]="cant" [preview]="false" (onAddAttached)="saveImageList($event)" [disabled]="lista.length>2" (onAlert)="disabledImage($event)"></app-upload-image>
+
+      <!-- <div class="padre">
+          <app-upload-image [preview]="false"  (onAddAttached)="saveImageList($event)" [disabled]="lista.length>2" (onAlert)="disabledImage($event)" style="width: 100%" ></app-upload-image>
+        </div> -->
+
+      <section fxLayout="row wrap" fxLayoutAlign="center center" >
+        <div class="content-img" fxLayoutAlign="center center" *ngFor="let item of publicationDetails?.Attachments">
+          <img [src]="item.Url" style="max-width:100%;max-height:100%;">
+          <mat-icon class="close-icon" (click)="(publicationDetails.Attachments.length > 1) ? imagenDelete(item.MultimediaId) : warningDelete()">close</mat-icon>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</ng-template>

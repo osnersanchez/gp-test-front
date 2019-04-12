@@ -1,0 +1,49 @@
+<!-- CONTENT COLLECTIONS -->
+<div *ngIf="prodCollection" class="mt">
+
+	<!-- SECTION HEADER -->
+	<div class="dropdown position-relative">
+		<h1 class="title-collection">Colecciones:</h1>
+		<div class="select-collection ">
+			<span class="select-collection-text dropbtn">{{prodCollection[selectedIndex].CategoryName}}<i class="material-icons">keyboard_arrow_down</i></span>
+		</div>
+
+		<!-- DROPDOWN -->
+		<div class="dropdown-content w-100">
+			<div class="content-list">
+				<ul *ngFor="let item of prodCollection; let i = index" class="list">
+					<li (click)="changeCategory(i)" ><a >{{item.CategoryName}}</a></li>
+					
+				</ul>
+			</div>
+		</div>
+		<!--/ END DROPDOWN -->
+			
+	</div>
+	<!--/ END SECTION HEADER -->
+
+	<!-- COLLECTION BODY -->
+	<div class="container wrapper-collection" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+		
+		<div fxFlex="35%" class="content-main-img">
+			<img src="{{prodCollection[selectedIndex].CategoryBackgroundUrl}}">
+			<div>
+				<span>{{prodCollection[selectedIndex].CategoryLogoTitle}}</span>
+			</div>
+		</div>
+
+		<div fxFlex="75%">
+			<div *ngFor="let products of prodCollection[selectedIndex].Pages" fxLayout="row" fxLayout.xs="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+				
+				<div *ngFor="let item of products.Items" fxFlex="25%" class="squad-item">
+					<img class="pointer" [routerLink]="['/publications/publication/', item.ProductId]" routerLinkActive="router-link-active"  src="{{item.ProductUrl}}">
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	<!--/ END COLLECTION BODY -->
+
+</div>
+<!--/ END CONTENT COLLECTIONS -->

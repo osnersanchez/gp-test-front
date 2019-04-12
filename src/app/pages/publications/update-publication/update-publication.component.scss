@@ -1,0 +1,136 @@
+.filter-row{
+    background: #fff;
+    margin-top: 5px;
+    padding: 8px 12px;
+}
+
+::ng-deep .mat-radio-label-content{
+    white-space: normal !important;
+}
+
+.close-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ff040473;
+    color: white;
+    cursor: pointer;
+}
+
+.content-img:hover>.close-icon{
+    visibility: visible;
+}
+
+.content-img{
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    position: relative;
+}
+
+@media (min-width: 768px){
+    .close-icon{
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 768px){
+
+    ::ng-deep .mat-horizontal-content-container{       
+        padding: 15px!important;
+    }
+    .p-2 {
+        padding: 0px 0px 20px 0px !important;
+    }    
+    // ::ng-deep .mat-step-header .mat-step-label.mat-step-label-active{
+    //     display: none!important;
+    // }
+    ::ng-deep .mat-vertical-content-container{
+        margin-left: 10px!important;
+    }
+    ::ng-deep .mat-vertical-stepper-header{
+        padding: 24px 24px 24px 0px!important;
+    }
+    ::ng-deep .mat-vertical-content{
+        padding: 0px 1px 24px 15px!important;
+    }
+
+    .text-muted{
+        margin: 10px 10px;
+    } 
+    
+}
+
+@media (max-width: 599px){
+    .mat-card {
+        padding: 24px 10px!important;
+    }
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+  
+.example-radio-button {
+    margin: 5px;
+}
+  
+.example-selected-value {
+    margin: 15px 0;
+}
+
+.orders-table.mat-table {
+    display: block;
+    overflow-x:auto;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    .mat-row, .mat-header-row {
+        display: flex;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        align-items: center;
+        // min-height: 48px;
+        padding: 0 24px;
+        // min-width: 870px;
+    }
+    .mat-cell, .mat-header-cell {
+        flex: 1;
+        overflow: hidden;
+        word-wrap: break-word;
+    }
+    .mat-header-cell {
+        font-size: 14px;
+    }
+    .mat-cell{
+        .order{
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .btn-invoice{
+            margin-left: 8px;
+        }
+        .actions{
+            text-align: right;
+        }
+    }
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #ff4081!important;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #ff4081!important;
+}
+
+  .card {
+    background: #f9f9f9;;
+    border-radius: 2px;    
+    height: 100%;
+    margin-bottom: 15px;
+    position: relative;    
+    padding: 10px;
+    border: 3px solid #e8e8e8;
+  }
+  

@@ -1,0 +1,56 @@
+<div class="avatar-banner">
+  <div class="icono_absoluto overlayFade overlay">
+      <app-upload-image [max]="1"  [simple]="true" (onAddAttached)="imgBanner='data:'+$event[0]?.MimeType +';base64,' + $event[0]?.Data; bannerList = $event"></app-upload-image>
+    <!-- <i class="material-icons">add</i>
+    <h5 style="color: white">tu banner</h5> -->
+  </div>
+  <!-- <div class="banner-image" style="background-image: url('../../../assets/images/fondo.jpg');"></div> -->
+  <div class="banner-image" [ngStyle]="{'background-image' : 'url(' +imgBanner + ')'}"></div>
+</div>
+
+<a class="link">
+  <div class="avatar ">
+    <div class="icono_absoluto overlayFade overlay">
+        <app-upload-image [max]="1" [simple]="true" (onAddAttached)="imgLogo='data:'+$event[0]?.MimeType +';base64,' + $event[0]?.Data; logoList = $event" (onAddFormData)="mostra($event)"></app-upload-image>
+      <!-- <i class="material-icons">add</i>
+      <h5 style="color: white">tu logo</h5>
+      <div ngClass.gt-xs="attacheds">
+      </div> -->
+    </div>
+    <div class="brand-logo" [ngStyle]="{'background-image' : 'url(' +imgLogo + ')'}"></div>
+
+
+  </div>
+</a>
+
+<mat-card class="card-content text-center">
+  <h1>Nueva tienda</h1>
+  <form [formGroup]="formShop" (ngSubmit)="saveShop()" class="column">
+    <div ngClass.lt-sm="column" ngClass.gt-xs="row">
+      <div ngClass.gt-xs="column form">
+        <mat-form-field>
+          <input formControlName="Name" matInput placeholder="Nombre" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="Slogan" matInput placeholder="Slogan" required>
+        </mat-form-field>
+      </div>
+      <div ngClass.gt-xs="attacheds">
+        <app-upload-image [max]="3" (onAlert)="alertImage($event)" (onAddAttached)="attachedList = $event"></app-upload-image>
+      </div>
+    </div>
+
+    <div class="row content-btn">
+      <button [routerLink]="['/my-shop']" type="button" class="item" color="warn" (click)="null" mat-button>
+        <mat-icon aria-label="Back">arrow_back</mat-icon>
+        Atras
+      </button>
+      <button [disabled]="formShop.invalid || !(attachedList.length>0)" type="submit" class="item" mat-button>
+        Guardar
+        <mat-icon aria-label="Save">save</mat-icon>
+      </button>
+    </div>
+
+
+  </form>
+</mat-card>

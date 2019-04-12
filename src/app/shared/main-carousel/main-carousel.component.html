@@ -1,0 +1,29 @@
+<div class="main-slider">
+  <div class="swiper-container h-100" [swiper]="config">
+    <div class="swiper-wrapper h-100">      
+      
+      <div *ngFor="let slide of slides" class="swiper-slide">
+        <div fxHide.xs="true" fxHide.sm="true"     [ngStyle]="{ 'background-image': 'url(' + slide.SliderUrl + ')'}" class="slide-item swiper-lazy">
+            <div *ngIf="!slide.SliderUrl" class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            <div class="mask"></div>  
+            <div fxLayout="column" fxLayoutAlign="center center" class="content">
+              <h1 *ngIf="slide.title" >{{slide.title}}</h1>
+              <h3 *ngIf="slide.subtitle">{{slide.subtitle}}</h3>
+            </div> 
+        </div>
+
+        <div fxHide.md="true" fxHide.lg="true"     [ngStyle]="{ 'background-image': 'url(' + slide.SliderUrl + ')'}" class="slide-item swiper-lazy">
+            <div *ngIf="!slide.SliderUrl" class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            <div class="mask"></div>  
+            <div fxLayout="column" fxLayoutAlign="center center" class="content">
+              <h1 *ngIf="slide.title" >{{slide.title}}</h1>
+              <h3 *ngIf="slide.subtitle">{{slide.subtitle}}</h3>
+            </div> 
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination white"></div>
+    <button mat-mini-fab id="btn-left" class="swiper-button-prev swipe-arrow btn-arrow"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <button mat-mini-fab id="btn-right" class="swiper-button-next swipe-arrow btn-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button>
+  </div>
+</div>

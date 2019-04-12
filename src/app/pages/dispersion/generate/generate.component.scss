@@ -1,0 +1,27 @@
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.content{
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 50px 0px,
+}
+
+.item{
+    margin: 0px 3%;
+}
+
+.select{
+    width: 30%;
+}
+
+.picker1{
+    margin-right: 50px;
+}

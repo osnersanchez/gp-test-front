@@ -1,0 +1,33 @@
+<mat-card class="product-item text-center">
+  <h1>Generar dispersion</h1>
+  <form class="row content">
+    <div class="column item">
+      <h4>Seleccione un periodo</h4>
+      <!-- [min]="minDate" [max]="maxDate"  -->
+      <div>
+        <mat-form-field class="picker1">
+          <input matInput [matDatepicker]="picker1" placeholder="Desde">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="Hasta">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field class="item select">
+      <mat-select placeholder="Seleccione el metodo de pago">
+        <mat-option *ngFor="let payment of payments" [value]="payment.value">
+          {{payment.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="item" style="margin-bottom: 1.25em" (click)="generarExcel();" mat-raised-button>
+      Generar
+      <mat-icon aria-label="Example icon-button with a heart icon">arrow_downward</mat-icon>
+    </button>
+
+  </form>
+</mat-card>

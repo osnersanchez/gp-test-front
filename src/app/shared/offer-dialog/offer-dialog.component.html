@@ -1,0 +1,84 @@
+<!-- <div class="close-btn-outer">
+  <button mat-mini-fab color="warn" (click)="close()">
+      <mat-icon>close</mat-icon>
+  </button>
+</div> -->
+
+<div mat-dialog-content>
+  <app-mask-loading [loading]="loading"></app-mask-loading>
+  <div fxLayout="row wrap">
+      <div fxFlex="100" fxFlex.gt-sm="50">
+          <div class="swiper-container h-100" [swiper]="config">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide">                      
+                      <img [attr.data-src]="product.Photo" style="width: 100%;" class="swiper-lazy" />
+                      <div class="swiper-lazy-preloader"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div fxFlex="100" fxFlex.gt-sm="50" ngClass.gt-sm="px-2 m-0" ngClass.sm="mt-2" ngClass.xs="mt-2">
+          <h2>{{product.Title}}</h2>
+          <div class="py-1 lh">
+              <p><span class="text-muted fw-500">Category: </span><span>{{ product.Category }}</span></p>
+              <p><span class="text-muted fw-500">Availibility: </span><span>{{ (product.availibilityCount > 0) ? 'In
+                      stock':'Unavailable'}}</span></p>
+          </div>
+
+
+
+
+
+          <div class="divider"></div>
+          <h2 class="mt-2 new-price">${{product.LastBid ? product.LastBid.Offer : product.Price}}</h2>
+
+
+          <div *ngIf="product?.SaleType === 3">
+            <span style="color:#8e8e93; font-weight: 500;">Cantidad a Subastar: <span style="color:black">{{quantity}}</span></span><br><br>      
+        </div> 
+ 
+
+        <!-- input para ofertar -->
+        <div *ngIf="product?.SaleType === 3">
+            <h2 class="text-center">¿Cuánto deseas ofertar?</h2><br>
+            <mat-form-field style="width: 100%;">
+                <input  placeholder="Cantidad a Ofertar" type="number" 
+                        min="{{product.LastBid ? product.LastBid.Offer : product.Price}}" 
+                        value="{{product.LastBid ? product.LastBid.Offer : product.Price}}" 
+                        [(ngModel)]="auctionOfferPrice" matInput 
+                >
+            </mat-form-field>
+        </div>
+        <div class="text-center">
+          <button *ngIf="product.SaleType === 3" 
+                [ngStyle.xs]="{'width':'100%'}"
+                [disabled]="auctionOfferPrice <= (product.LastBid ? product.LastBid.Offer : product.Price)" 
+                mat-raised-button color="primary"
+                (click)="doAuction()"
+            > 
+                Confirmar Oferta 
+          </button>
+        </div>
+        
+
+        <!-- mensajes de oferta -->
+        <div class="text-center" style="margin-top: 5px; color: red;" *ngIf="product?.SaleType === 3 && product?.ReservePrice">
+            <div *ngIf="product.ReservePrice && (auctionOfferPrice <= product.ReservePrice)"> 
+                <h2 class="fade-in">Tu oferta debe ser mayor a {{product.LastBid ? product.LastBid.Offer : product.Price}} {{product.Currency ? 'USD':'MXN'}}</h2>
+            </div>
+            <div *ngIf="!product.ReservePrice">
+                <h2>Aun no han ofertado ,se el primero en ofertar {{product.LastBid ? product.LastBid.Offer : product.Price}} {{product.Currency ? 'USD':'MXN'}} o mas !!</h2>
+            </div>
+        </div>
+          <!-- poner aqui los input con sus correspondientes validaciones -->
+
+
+
+
+
+
+
+          <!-- <app-controls [product]="product" [type]="'all'"></app-controls> -->
+      </div>
+  </div>
+</div>

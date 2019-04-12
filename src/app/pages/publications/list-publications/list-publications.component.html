@@ -1,0 +1,97 @@
+<mat-sidenav-container>
+    <mat-sidenav-content class="all-products" ngClass.gt-sm="p-left">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+            class="filter-row mat-elevation-z1 text-muted">
+            <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <div>
+                <a mat-button [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
+                    {{sort}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+                </a>
+                <mat-menu #sortMenu="matMenu" xPosition="before" class="app-dropdown">
+                    <span (mouseleave)="sortMenuTrigger.closeMenu()">
+                        <button mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
+                            <span>{{sort}}</span>
+                        </button>
+                    </span>
+                </mat-menu>
+            </div>
+            <div>
+                <a mat-button [matMenuTriggerFor]="countsMenu" #countsMenuTrigger="matMenuTrigger">
+                    Mostrar {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+                </a>
+                <mat-menu #countsMenu="matMenu" xPosition="before" class="app-dropdown">
+                    <span (mouseleave)="countsMenuTrigger.closeMenu()">
+                        <button mat-menu-item *ngFor="let count of counts" (click)="changeCount(count)">
+                            <span>{{count}}</span>
+                        </button>
+                    </span>
+                </mat-menu>
+                <button mat-icon-button (click)="changeViewType('grid', 33.33)">
+                    <mat-icon>view_module</mat-icon>
+                </button>
+                <button mat-icon-button (click)="changeViewType('grid', 25)">
+                    <mat-icon>view_comfy</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div *ngIf="viewType == 'grid' && !loadData" fxLayout="row wrap" fxLayoutAlign="start strech"
+            class="products-wrapper">
+            <mat-card
+                *ngFor="let product of publicationsList | search:searchVal:propertiesSearch | paginate: { itemsPerPage: count, currentPage: page }"
+                [fxFlex.gt-sm]="viewCol" [ngStyle]="{margin: gap+'px'}" [fxFlex]="viewCal(100)"
+                [fxFlex.sm]="viewCal(50)" fxLayout="column" fxFlex fxLayoutAlign="space-between strech">
+                <a fxFlex fxLayoutAlign="center center" [fxFlex]="'1 0%'" class="image-link">
+                    <img [src]="enviroment+'/images/'+product.photo" alt="">
+                </a>
+                <div style="padding: 10px">
+                    <mat-chip-list *ngIf="tokenService.getUserId() == product?.idUser" style="top: auto; ">
+                        <mat-chip style="cursor: pointer;" [routerLink]="['edit/'+product?.id]" color="primary"
+                            selected="true">
+                            <mat-icon>edit</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                    <a class="title text-truncate">
+                        {{product?.name}}
+                    </a>
+                    <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between center" class="prices">
+                        <div fxLayout="column" fxLayoutAlign="center start">
+                            <p class="new-price">${{product?.price | number : '1.2-2'}}</p>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="center end">
+                            <mat-chip-list style="top: auto; ">
+                                <mat-chip style="cursor: pointer;" [routerLink]="['publication/'+product?.id]"
+                                    color="warn" selected="true">Ver Detalles</mat-chip>
+                            </mat-chip-list>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-card>
+        </div>
+        <app-loading *ngIf="loadData"></app-loading>
+
+        <mat-card fxLayout="column" fxLayoutAlign="center center" style="height: 300px;"
+            *ngIf="!publicationsList?.length && !loadData">
+            <h1>No hay productos</h1>
+            <mat-chip-list>
+                <mat-chip color="warn" selected="true">Intenta con otra cosa</mat-chip>
+            </mat-chip-list>
+            <div>
+                <a [routerLink]="['/publications/create']" mat-raised-button color="primary" class="mt-2">Añadir un producto</a>
+            </div>
+        </mat-card>
+
+        <div *ngIf="publicationsList?.length > 0" fxLayout="row wrap">
+            <div fxFlex="100">
+                <mat-card class="p-0 text-center">
+                    <pagination-controls class="product-pagination" autoHide="true" maxSize="5"
+                        (pageChange)="onPageChanged($event)"></pagination-controls>
+                </mat-card>
+            </div>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

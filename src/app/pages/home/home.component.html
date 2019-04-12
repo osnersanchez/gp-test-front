@@ -1,0 +1,158 @@
+<!-- MAIN CAROUSEL -->
+<app-main-carousel [slides]="sliders"></app-main-carousel>
+<!--/ END MAIN CAROUSEL -->
+
+<!-- MAIN CONTENT -->
+<div class="bg-gris">
+    <div class="theme-container p-t">
+
+        <!-- BANNER -->
+        <div fxLayout="row wrap" class="info-bar banner-init">
+            <div fxFlex="100" fxFlex.gt-md="23" fxFlex.gt-xs="50">
+                <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="content-icon">
+                        <mat-icon class="mat-icon-md text-muted m-0 color-icon" style="color: #ea544e!important;">credit_card</mat-icon>
+                    </div>
+
+                    <div class="content">
+                        <p class="font-18px">Paga en hasta 12 MSI</p>
+                        <span class="text-muted m-0" style="color: #ea544e!important;">Ver más</span>
+                    </div>
+                </mat-card>
+            </div>
+            <div fxFlex="100" fxFlex.gt-md="23" fxFlex.gt-xs="50">
+                <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="content-icon">
+                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">card_travel</mat-icon>
+                    </div>
+
+                    <div class="content">
+                        <p class="font-18px">Tarjeta de débito</p>
+                        <span class="text-muted m-0" style="color: #ea544e!important;">Ver más</span>
+                    </div>
+                </mat-card>
+            </div>
+            <div fxFlex="100" fxFlex.gt-md="31" fxFlex.gt-xs="50">
+                <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="content-icon">
+                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">monetization_on</mat-icon>
+                    </div>
+
+                    <div class="content">
+                        <p class="font-18px">Efectivo, depósito y transferencia</p>
+                        <span class="text-muted m-0" style="color: #ea544e!important;">Ver más</span>
+                    </div>
+                </mat-card>
+            </div>
+            <div fxFlex="100" fxFlex.gt-md="23" fxFlex.gt-xs="50" class="br-l-banner">
+                <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
+                    <div class="content-icon">
+                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">plus_one</mat-icon>
+                    </div>
+
+                    <div class="content">
+                        <p class="font-18px">Más medios de pago</p>
+                        <span class="text-muted m-0" style="color: #ea544e!important;">Ver más</span>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+        <!--/ END BANNER -->
+
+
+        <!-- PRODUCTS -->
+        <div *ngIf="lastVisits" class="products-tabs">
+            <app-products-carousel [productsTitle]="'Basado en tu ultima visita'"  [productClassName]="'lastVisits'" [products]="lastVisits"></app-products-carousel>
+        </div>
+        <!--/ END PRODUCTS -->
+        
+        <!-- PRODUCTS -->
+        <div *ngIf="offerWeeks" class="products-tabs">
+            <app-products-carousel [productsTitle]="'Ofertas de la semana'" [productClassName]="'offerWeeks'" [products]="offerWeeks"></app-products-carousel>
+        </div>
+        <!--/ END PRODUCTS -->
+
+         
+
+        <!-- SECOND BANNER -->
+        <div>
+            <h1 class="font-weight mb">Descubre</h1>
+            
+            <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+                <mat-card  *ngFor="let item of discover" fxFlex="50%" class="content-banner">
+                    <div fxLayout="row" class="h-250px">
+                        <div fxFlex="50%" class="d-content">
+                            <img src="{{item.ImageUrl}}" class="w-150">
+                        </div>
+                        <div fxFlex="50%" class="d-content-text">
+                            <div>
+                                <p class="text-1">{{item.Text1 | uppercase}}</p>
+                                <p class="text-2">{{item.Text2 | uppercase}}</p>
+                                <p class="text-3">{{item.Text3 | uppercase}}</p>
+                                <button (click)="goToCategory(item.CategoryId)" class="mt-1 mat-raised-button mat-primary">Ver más</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </mat-card>
+               
+            </div>
+        </div>        
+        <!--/ END SECOND BANNER -->
+        
+        <!-- SHOPS CAROUSEL -->
+        <div *ngIf="bestStores" class="products-tabs">
+            <app-shops-carousel [shops]="bestStores"></app-shops-carousel>
+        </div>
+        <!--/ END SHOPS CAROUSEL -->
+
+        <!-- THIRD BANNER -->
+        <div>
+            <h1 class="font-weight mb">Te puede interesar</h1>
+
+            <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+                <mat-card *ngFor="let item of mayInterest" fxFlex="50%" class="content-banner">
+                    <div fxLayout="row" class="h-250px">
+                        <div fxFlex="50%" class="d-content">
+                            <img src="{{item.ImageUrl}}" class="w-150">
+                        </div>
+                        <div fxFlex="50%" class="d-content-text">
+                            <div>
+                                <p class="text-1">{{item.Text1 | uppercase}}</p>
+                                <p class="text-2">{{item.Text2 | uppercase}}</p>
+                                <p class="text-3">{{item.Text3 | uppercase}}</p>
+                                <button (click)="goToCategory(item.CategoryId)" class="mt-1 mat-raised-button mat-primary">Ver más</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </mat-card>
+      
+            </div>
+        </div>
+        <!--/ END THIRD BANNER -->
+
+        <!-- SHOPS -->
+        <!--<app-banners *ngIf="stores" [stores]="stores"> </app-banners>-->
+        <!--/ END SHOPS -->
+
+        <!-- COLLECTION PRODUCTS -->
+        <div class="mt-collection">
+            <app-collection-products [prodCollection]="relatedPurchasesByCategories"></app-collection-products>
+        </div>
+        <!--/ END COLLECTION PRODUCTS -->
+        
+        <!-- CATEGORY PRODUCTS -->
+        <div *ngIf="popularCategories" class="products-tabs">
+            <app-products-category [categories]="popularCategories"></app-products-category>
+        </div>
+        <!--/ END CATEGORY PRODUCTS -->
+        
+        
+    </div>
+    <!-- FOOTER CARD -->
+    <app-footer-cards></app-footer-cards>
+    <!--/ END FOOTER CARD -->
+</div>
+
+<!--/ END MAIN CONTENT -->
