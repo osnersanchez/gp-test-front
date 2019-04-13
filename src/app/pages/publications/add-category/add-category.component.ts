@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { PublicationsApiService } from '../../../shared/services/publications-api.service';
+import { CategoryManagerService } from '../../../shared/subjects/category-manager';
 
 @Component({
   selector: 'app-add-category',
@@ -18,6 +19,7 @@ export class AddCategoryComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
+    private categoryManager: CategoryManagerService,
     private publicationService: PublicationsApiService
   ) { }
 
@@ -29,6 +31,7 @@ export class AddCategoryComponent implements OnInit {
     this.publicationService.addCategory(this.formCategory.value)
       .subscribe(res => {
         this.loading = false;
+        this.categoryManager.loadCategory();
         this.snackBar.open(res['data'], null, {
           duration: 2000
         });

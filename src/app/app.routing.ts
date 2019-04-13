@@ -19,7 +19,7 @@ export const routes: Routes = [
             { path: 'brands', loadChildren: 'app/pages/brands/brands.module#BrandsModule', data: { breadcrumb: 'Brands' } },
             { path: 'products', loadChildren: 'app/pages/products/products.module#ProductsModule', data: { breadcrumb: 'All Products' } },
             { path: 'products-order', loadChildren: 'app/pages/products-order/products-order.module#ProductsOrderModule', data: { breadcrumb: 'Mis Pedidos' } },
-            { path: 'publications', loadChildren: 'app/pages/publications/publications.module#PublicationsModule', data: { breadcrumb: 'Mis Publicaciones' } },
+            { path: 'publications', loadChildren: 'app/pages/publications/publications.module#PublicationsModule', data: { breadcrumb: 'Publicaciones' } },
             { path: 'dispersion', loadChildren: 'app/pages/dispersion/dispersion.module#DispersionModule', data: { breadcrumb: 'Dispersion' } },        
             { path: 'my-shop', loadChildren: 'app/pages/my-shop/my-shop.module#MyShopModule',data: { breadcrumb: 'Mis tiendas' }},
             { path: 'verify-email/:token', loadChildren: 'app/pages/verify-email/verify-email.module#VerifyEmailModule'},

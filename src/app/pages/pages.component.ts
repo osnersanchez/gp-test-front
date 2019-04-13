@@ -22,6 +22,7 @@ import { MatAutocompleteTrigger, MatSnackBar } from '@angular/material';
 import { LoginManagerService } from '../shared/subjects/login-manager.service';
 import { UserService } from './sign-in/user.service';
 import { PublicationsApiService } from '../shared/services/publications-api.service';
+import { CategoryManagerService } from '../shared/subjects/category-manager';
 
 
 @Component({
@@ -52,7 +53,8 @@ export class PagesComponent implements OnInit, AfterViewInit {
   constructor(
     public appSettings: AppSettings,
     public appService: AppService,
-    private categoryService: CategoryService,
+    private categoryManager: CategoryManagerService,
+    // private categoryService: CategoryService,
     public sidenavMenuService: SidenavMenuService,
     public router: Router,
     public shoppingCartManagerService: ShoppingCartManagerService,
@@ -106,7 +108,8 @@ export class PagesComponent implements OnInit, AfterViewInit {
   }
 
   getCategories() {
-    this.categoryService.get().subscribe((categories: any) => {
+    this.categoryManager.loadCategory();
+    this.categoryManager.category$.subscribe((categories: any) => {
       this.categories = categories;
     });
   }

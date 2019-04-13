@@ -67,8 +67,14 @@ export class CartComponent implements OnInit {
   }
 
   confirm() {
+    this.loadDetails = true;
     this.shoppingCartService.buildAll().subscribe(() => {
+      this.loadDetails = false;
+      this.snackBar.open('Se ha procesado su compra', '×', { panelClass: 'success', verticalPosition: 'top', duration: 5000 });
       this.getCart();
+    }, err => {
+      this.loadDetails = false;
+      this.snackBar.open('No se ha podido hacer la compra', '×', { panelClass: 'success', verticalPosition: 'top', duration: 5000 });
     })
   }
 

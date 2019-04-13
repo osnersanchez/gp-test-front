@@ -21,6 +21,7 @@ import { UserService } from './user.service';
 import { UserRegister } from '../../shared/models/user-register';
 import { LoginManagerService } from '../../shared/subjects/login-manager.service';
 import { UserFieldsManagerService } from '../../shared/subjects/user-fields-manager.service';
+import { CategoryManagerService } from '../../shared/subjects/category-manager';
 
 @Component({
   selector: 'app-sign-in',
@@ -33,6 +34,7 @@ export class SignInComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
     public router: Router, public snackBar: MatSnackBar,
+    private categoryManager: CategoryManagerService,
     public userService: UserService,
     public loginManagerService: LoginManagerService,
     public userFieldsManagerService: UserFieldsManagerService) { }
@@ -64,6 +66,7 @@ export class SignInComponent implements OnInit {
               localStorage.setItem('session', JSON.stringify({...data,...res['user']}));
             }
           )
+          this.categoryManager.loadCategory();
 
           this.router.navigate(['/']);
           this.loginManagerService.setStatusLoggedIn(true);
@@ -99,23 +102,24 @@ export class SignInComponent implements OnInit {
               verticalPosition: 'bottom',
               duration: 3000
             });
+            this.onLoginFormSubmit({ email: accountInfo.email, password: accountInfo.password });
 
-            this.userService.login({ email: accountInfo.email, password: accountInfo.password }).subscribe((data: any) => {
-              localStorage.setItem('session', JSON.stringify(data));
-              this.router.navigate(['/']);
-              this.loginManagerService.setStatusLoggedIn(true);
-              const userFullName = data.firstName + ' ' + data.lastName;
-              this.userFieldsManagerService.setFullName(userFullName);
-              this.snackBar.open('Bienvenido a Test GoodPanda!', null, {
-                duration: 2000
-              });
-            },
-              (error: any) => {
-                this.snackBar.open('Error al ingresar!', null, {
-                  duration: 2000
-                });
-                console.log(error);
-              });;
+            // this.userService.login({ email: accountInfo.email, password: accountInfo.password }).subscribe((data: any) => {
+            //   localStorage.setItem('session', JSON.stringify(data));
+            //   this.router.navigate(['/']);
+            //   this.loginManagerService.setStatusLoggedIn(true);
+            //   const userFullName = data.firstName + ' ' + data.lastName;
+            //   this.userFieldsManagerService.setFullName(userFullName);
+            //   this.snackBar.open('Bienvenido a Test GoodPanda!', null, {
+            //     duration: 2000
+            //   });
+            // },
+            //   (error: any) => {
+            //     this.snackBar.open('Error al ingresar!', null, {
+            //       duration: 2000
+            //     });
+            //     console.log(error);
+            //   });
           },
           (error: any) => {
             this.snackBar.open('Error al registrar!', '×', {
