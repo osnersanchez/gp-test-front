@@ -9,6 +9,7 @@ import Vibrant from 'node-vibrant';
 import { TokenStorageService } from '../../shared/auth/token-storage.service';
 import { Slider } from '../../shared/models/banner';
 import { Router } from '@angular/router';
+import { PublicationsManagerService } from '../../shared/subjects/publications-manager.service';
 
 @Component({
   selector: 'app-home',
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
       image: 'assets/images/carousel/banner5.jpg'
     }
   ];
+  public listPublications = []
 
   public brands = [];
   public sliders;
@@ -62,6 +64,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public appService: AppService,
     private storeService: StoreService,
+    public publicationService: PublicationsManagerService,
     private homeService: HomeService,
     private tokenStorageService: TokenStorageService,
     public router: Router,
@@ -72,6 +75,10 @@ export class HomeComponent implements OnInit {
     // this.getStores();
     this.getProducts();
     // this.getBrands();
+    this.publicationService.loadPublicationsList(1);
+    this.publicationService.getPublicationsList(1).subscribe(list => {
+      this.listPublications = list
+    })
   }
 
   public onLinkClick(e) {

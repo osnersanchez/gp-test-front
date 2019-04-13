@@ -11,7 +11,8 @@
             <div fxFlex="100" fxFlex.gt-md="23" fxFlex.gt-xs="50">
                 <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
                     <div class="content-icon">
-                        <mat-icon class="mat-icon-md text-muted m-0 color-icon" style="color: #ea544e!important;">credit_card</mat-icon>
+                        <mat-icon class="mat-icon-md text-muted m-0 color-icon" style="color: #ea544e!important;">
+                            credit_card</mat-icon>
                     </div>
 
                     <div class="content">
@@ -23,7 +24,8 @@
             <div fxFlex="100" fxFlex.gt-md="23" fxFlex.gt-xs="50">
                 <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
                     <div class="content-icon">
-                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">card_travel</mat-icon>
+                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">card_travel
+                        </mat-icon>
                     </div>
 
                     <div class="content">
@@ -35,7 +37,8 @@
             <div fxFlex="100" fxFlex.gt-md="31" fxFlex.gt-xs="50">
                 <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
                     <div class="content-icon">
-                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">monetization_on</mat-icon>
+                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">monetization_on
+                        </mat-icon>
                     </div>
 
                     <div class="content">
@@ -47,7 +50,8 @@
             <div fxFlex="100" fxFlex.gt-md="23" fxFlex.gt-xs="50" class="br-l-banner">
                 <mat-card class="light-block" fxLayout="row" fxLayoutAlign="start center">
                     <div class="content-icon">
-                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">plus_one</mat-icon>
+                        <mat-icon class="mat-icon-md text-muted m-0" style="color: #ea544e!important;">plus_one
+                        </mat-icon>
                     </div>
 
                     <div class="content">
@@ -61,24 +65,27 @@
 
 
         <!-- PRODUCTS -->
-        <div *ngIf="lastVisits" class="products-tabs">
-            <app-products-carousel [productsTitle]="'Basado en tu ultima visita'"  [productClassName]="'lastVisits'" [products]="lastVisits"></app-products-carousel>
-        </div>
-        <!--/ END PRODUCTS -->
-        
-        <!-- PRODUCTS -->
-        <div *ngIf="offerWeeks" class="products-tabs">
-            <app-products-carousel [productsTitle]="'Ofertas de la semana'" [productClassName]="'offerWeeks'" [products]="offerWeeks"></app-products-carousel>
-        </div>
+        <!-- <div *ngIf="lastVisits" class="products-tabs">
+            <app-products-carousel [productsTitle]="'Basado en tu ultima visita'" [productClassName]="'lastVisits'"
+                [products]="lastVisits"></app-products-carousel>
+        </div> -->
         <!--/ END PRODUCTS -->
 
-         
+        <!-- PRODUCTS -->
+        <!-- <div *ngIf="offerWeeks" class="products-tabs">
+            <app-products-carousel [productsTitle]="'Ofertas de la semana'" [productClassName]="'offerWeeks'"
+                [products]="offerWeeks"></app-products-carousel>
+        </div> -->
+        <!--/ END PRODUCTS -->
+
+
 
         <!-- SECOND BANNER -->
         <div>
             <h1 class="font-weight mb">Descubre</h1>
-            
-            <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+            <app-products-related [products]="listPublications || []"></app-products-related>
+
+            <!-- <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
                 <mat-card  *ngFor="let item of discover" fxFlex="50%" class="content-banner">
                     <div fxLayout="row" class="h-250px">
                         <div fxFlex="50%" class="d-content">
@@ -96,21 +103,21 @@
                     </div>
                 </mat-card>
                
-            </div>
-        </div>        
-        <!--/ END SECOND BANNER -->
-        
-        <!-- SHOPS CAROUSEL -->
-        <div *ngIf="bestStores" class="products-tabs">
-            <app-shops-carousel [shops]="bestStores"></app-shops-carousel>
+            </div> -->
         </div>
+        <!--/ END SECOND BANNER -->
+
+        <!-- SHOPS CAROUSEL -->
+        <!-- <div *ngIf="bestStores" class="products-tabs">
+            <app-shops-carousel [shops]="bestStores"></app-shops-carousel>
+        </div> -->
         <!--/ END SHOPS CAROUSEL -->
 
         <!-- THIRD BANNER -->
         <div>
-            <h1 class="font-weight mb">Te puede interesar</h1>
+            <!-- <h1 class="font-weight mb">Te puede interesar</h1> -->
 
-            <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+            <!-- <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"  fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
                 <mat-card *ngFor="let item of mayInterest" fxFlex="50%" class="content-banner">
                     <div fxLayout="row" class="h-250px">
                         <div fxFlex="50%" class="d-content">
@@ -128,7 +135,7 @@
                     </div>
                 </mat-card>
       
-            </div>
+            </div> -->
         </div>
         <!--/ END THIRD BANNER -->
 
@@ -137,18 +144,18 @@
         <!--/ END SHOPS -->
 
         <!-- COLLECTION PRODUCTS -->
-        <div class="mt-collection">
+        <!-- <div class="mt-collection">
             <app-collection-products [prodCollection]="relatedPurchasesByCategories"></app-collection-products>
-        </div>
+        </div> -->
         <!--/ END COLLECTION PRODUCTS -->
-        
+
         <!-- CATEGORY PRODUCTS -->
-        <div *ngIf="popularCategories" class="products-tabs">
+        <!-- <div *ngIf="popularCategories" class="products-tabs">
             <app-products-category [categories]="popularCategories"></app-products-category>
-        </div>
+        </div> -->
         <!--/ END CATEGORY PRODUCTS -->
-        
-        
+
+
     </div>
     <!-- FOOTER CARD -->
     <app-footer-cards></app-footer-cards>

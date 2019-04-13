@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private http:HttpClient) {}
   get(id?: any) {
     return this.apiService.get(`landing/init/${id}`);
   }
 
   getInitLanding(id) {
-    return this.apiService.get(`landing/user-landing-page/${id}`);
+    return this.http.get(`https://betweinc-api.azurewebsites.net/api/landing/user-landing-page/null`);
 
   }
 
